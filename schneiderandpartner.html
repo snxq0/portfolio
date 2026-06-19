@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schneider & Partners | Premium Modern Legal Counsel</title>
+    
+    <!-- Google Fonts: Cormorant Garamond for elegant editorial headings, Plus Jakarta Sans for high-readability UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for modern utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js for powerful, lightweight client-side interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Lucide Icons for clean, ultra-modern vector iconography -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Configuration for customized high-end color palette -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fcfbfa',
+                            100: '#f5f2eb',
+                            200: '#e6ded0',
+                            300: '#d2c2aa',
+                            400: '#bca381',
+                            500: '#a3845b',
+                            600: '#8f7049',
+                            700: '#775c3d',
+                            800: '#614b34',
+                            900: '#503e2c',
+                            DEFAULT: '#8f7049' // Sophisticated Champagne Gold/Bronze
+                        },
+                        stone: {
+                            900: '#1c1b19', // Off-black premium background
+                            850: '#252421'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth transitions for interactive components */
+        .transition-all-300 {
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1c1b19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8f7049;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-[#FAF9F5] text-stone-900 font-sans antialiased overflow-x-hidden" x-data="{ mobileMenuOpen: false, activeModal: null }">
+
+    <!-- Sticky, minimal premium navigation header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F5]/90 backdrop-blur-md border-b border-primary-200/30 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-9 h-9 border border-primary-500 flex items-center justify-center rounded-sm rotate-45 group-hover:rotate-90 transition-transform duration-500">
+                    <span class="font-serif text-lg text-primary-600 -rotate-45 group-hover:rotate-0 transition-transform duration-500">A</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl tracking-widest uppercase font-semibold text-stone-900">Schneider</span>
+                    <span class="text-[9px] uppercase tracking-[0.25em] text-primary-600 -mt-1">&amp; Partners</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-10 text-xs font-semibold tracking-widest uppercase text-stone-600">
+                <a href="#philosophy" class="hover:text-primary-600 transition-colors duration-200">Philosophy</a>
+                <a href="#expertise" class="hover:text-primary-600 transition-colors duration-200">Expertise</a>
+                <a href="#team" class="hover:text-primary-600 transition-colors duration-200">Partners</a>
+                <a href="#insights" class="hover:text-primary-600 transition-colors duration-200">Insights</a>
+                <a href="#contact" class="hover:text-primary-600 transition-colors duration-200">Contact</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:block">
+                <a href="#planner" class="relative group overflow-hidden px-6 py-3 border border-stone-900 text-xs font-semibold tracking-widest uppercase rounded-none transition-colors duration-300">
+                    <span class="absolute inset-0 w-full h-full bg-stone-900 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></span>
+                    <span class="relative z-10 text-stone-900 group-hover:text-white transition-colors duration-300">Request Strategy Session</span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-stone-800 focus:outline-none" aria-label="Toggle Menu">
+                <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16"/></svg>
+                <svg x-show="mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="display: none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Fullscreen Navigation Overlay -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4" class="absolute top-20 left-0 w-full bg-[#FAF9F5] border-b border-primary-200/50 shadow-lg py-8 px-6 flex flex-col space-y-6 md:hidden z-40" style="display: none;">
+            <a @click="mobileMenuOpen = false" href="#philosophy" class="text-sm font-semibold tracking-wider uppercase text-stone-700 hover:text-primary-600">Philosophy</a>
+            <a @click="mobileMenuOpen = false" href="#expertise" class="text-sm font-semibold tracking-wider uppercase text-stone-700 hover:text-primary-600">Expertise</a>
+            <a @click="mobileMenuOpen = false" href="#team" class="text-sm font-semibold tracking-wider uppercase text-stone-700 hover:text-primary-600">Partners</a>
+            <a @click="mobileMenuOpen = false" href="#insights" class="text-sm font-semibold tracking-wider uppercase text-stone-700 hover:text-primary-600">Insights</a>
+            <a @click="mobileMenuOpen = false" href="#contact" class="text-sm font-semibold tracking-wider uppercase text-stone-700 hover:text-primary-600">Contact</a>
+            <hr class="border-primary-200/50">
+            <a @click="mobileMenuOpen = false" href="#planner" class="text-center py-3 bg-stone-900 text-white text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-300">Request Strategy Session</a>
+        </div>
+    </header>
+
+    <!-- Hero Section using premium typography, subtle abstract accents, and asymmetrical grid layout -->
+    <section class="relative min-h-screen flex items-center pt-24 pb-16 bg-[#FAF9F5] overflow-hidden">
+        <!-- Abstract Gold Accent Line in Background -->
+        <div class="absolute right-0 top-1/4 w-1/3 h-[500px] border-l border-y border-primary-200/30 rounded-l-full pointer-events-none hidden lg:block"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Hero Left Side: High-End Copywriting and Dual Call-To-Actions -->
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-8">
+                <!-- Trust Tag -->
+                <div class="inline-flex items-center space-x-2">
+                    <span class="w-12 h-[1px] bg-primary-500"></span>
+                    <span class="text-xs uppercase tracking-[0.2em] font-medium text-primary-600">A Modern Standard of Counsel</span>
+                </div>
+                
+                <!-- Headline -->
+                <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light text-stone-950 tracking-tight leading-[1.05]">
+                    Clarity. <br>
+                    <span class="italic text-primary-600">Precision.</span> <br>
+                    Absolute Counsel.
+                </h1>
+                
+                <!-- Supporting Statement -->
+                <p class="max-w-xl text-stone-600 text-base md:text-lg font-light leading-relaxed">
+                    We redefine the legal experience for visionary founders, private wealth portfolios, and standard-setting enterprises. Exceptional representation, delivered through modern, transparent methodologies.
+                </p>
+                
+                <!-- Luxury Actions -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
+                    <a href="#planner" class="px-8 py-4 bg-stone-900 text-white text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-all duration-300 shadow-md text-center">
+                        Consultation Intake
+                    </a>
+                    <a href="#expertise" class="inline-flex items-center justify-center space-x-2 text-xs font-semibold tracking-widest uppercase hover:text-primary-600 transition-colors duration-200 text-stone-800">
+                        <span>Explore Practice Areas</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Live Performance Stats Bar -->
+                <div class="grid grid-cols-3 gap-6 pt-12 border-t border-primary-200/50 max-w-lg">
+                    <div>
+                        <p class="font-serif text-3xl font-light text-stone-950">98%</p>
+                        <p class="text-[10px] uppercase tracking-wider text-stone-500 mt-1">Enterprise Success</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-3xl font-light text-stone-950">$2.4B+</p>
+                        <p class="text-[10px] uppercase tracking-wider text-stone-500 mt-1">Transaction Value</p>
+                    </div>
+                    <div>
+                        <p class="font-serif text-3xl font-light text-stone-950">140+</p>
+                        <p class="text-[10px] uppercase tracking-wider text-stone-500 mt-1">Global Clients</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right Side: Modern Minimalist Illustration Frame -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative w-full aspect-[4/5] bg-stone-100 border border-primary-200/50 p-4">
+                    <!-- Elegant Abstract Legal Geometry representation instead of generic dark courtroom photos -->
+                    <div class="absolute inset-4 bg-stone-900 flex flex-col justify-between p-8 overflow-hidden">
+                        <!-- Abstract Line Art overlay -->
+                        <div class="absolute inset-0 opacity-10 flex items-center justify-center">
+                            <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                                <circle cx="50" cy="50" r="40" stroke-width="0.5"/>
+                                <line x1="10" y1="50" x2="90" y2="50" stroke-width="0.5"/>
+                                <line x1="50" y1="10" x2="50" y2="90" stroke-width="0.5"/>
+                            </svg>
+                        </div>
+
+                        <!-- Card Top Info -->
+                        <div class="relative z-10 flex justify-between items-start">
+                            <div class="w-10 h-10 border border-primary-500 flex items-center justify-center rounded-sm">
+                                <span class="font-serif text-sm text-primary-400">A</span>
+                            </div>
+                            <span class="text-[10px] uppercase tracking-[0.25em] text-primary-300">EST. 2012</span>
+                        </div>
+
+                        <!-- Card Large Visual Highlight -->
+                        <div class="relative z-10 my-auto text-center">
+                            <h3 class="font-serif text-3xl md:text-4xl text-[#FAF9F5]/90 font-light italic">
+                                "Rigorous defense. Inspired strategy."
+                            </h3>
+                        </div>
+
+                        <!-- Card Bottom Signature/Details -->
+                        <div class="relative z-10 border-t border-stone-800 pt-4 flex justify-between items-center">
+                            <div>
+                                <h4 class="text-xs font-semibold uppercase tracking-wider text-white">Schneider Law</h4>
+                                <p class="text-[9px] uppercase tracking-widest text-primary-400">London • Zurich • NY</p>
+                            </div>
+                            <!-- Minimal graphic of balance scale representing justice -->
+                            <svg class="w-8 h-8 text-primary-500 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                                <line x1="12" y1="3" x2="12" y2="21"></line>
+                                <line x1="6" y1="7" x2="18" y2="7"></line>
+                                <line x1="6" y1="7" x2="6" y2="15"></line>
+                                <line x1="18" y1="7" x2="18" y2="15"></line>
+                                <path d="M4 15c0 1.1.9 2 2 2h0c1.1 0 2-.9 2-2M16 15c0 1.1.9 2 2 2h0c1.1 0 2-.9 2-2"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- Small Floating Decal -->
+                <div class="absolute -bottom-6 -left-6 bg-primary-100 border border-primary-200 p-4 shadow-xl hidden md:block max-w-[200px]">
+                    <p class="text-stone-600 text-[11px] leading-relaxed">
+                        We limit client engagement to ensure extraordinary standard of individual care.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content-driven value proposition highlighting differences from traditional legal firms -->
+    <section id="philosophy" class="py-24 bg-stone-900 text-white relative overflow-hidden">
+        <!-- Accent circles -->
+        <div class="absolute -left-1/4 -bottom-1/4 w-1/2 h-[500px] border border-primary-500/10 rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+                <!-- Philosophy Header -->
+                <div class="lg:col-span-5 flex flex-col justify-center space-y-6">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                        <span class="text-xs uppercase tracking-[0.2em] text-primary-400 font-medium">Why We are Different</span>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-light tracking-tight leading-tight">
+                        Modern clarity to replace <span class="italic text-primary-400">archaic complexity.</span>
+                    </h2>
+                    <p class="text-stone-400 text-sm leading-relaxed max-w-md">
+                        The traditional law industry thrives on opacity and hourly-rate inflation. We leverage technology, agile processes, and uncompromising focus to provide transparent, outcome-oriented advocacy.
+                    </p>
+                </div>
+
+                <!-- Core Values Grid -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <!-- Value Card 1 -->
+                    <div class="border border-stone-800 p-8 hover:border-primary-500/50 transition-colors duration-300 bg-stone-850/50">
+                        <div class="w-10 h-10 border border-primary-500/30 rounded-none flex items-center justify-center text-primary-400 mb-6">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium text-white mb-3">Absolute Discretion</h3>
+                        <p class="text-stone-400 text-xs leading-relaxed">
+                            Elite safeguard mechanisms and institutional protocols ensure total confidentiality and data safety for high-stakes holdings.
+                        </p>
+                    </div>
+
+                    <!-- Value Card 2 -->
+                    <div class="border border-stone-800 p-8 hover:border-primary-500/50 transition-colors duration-300 bg-stone-850/50">
+                        <div class="w-10 h-10 border border-primary-500/30 rounded-none flex items-center justify-center text-primary-400 mb-6">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium text-white mb-3">Transparent Fees</h3>
+                        <p class="text-stone-400 text-xs leading-relaxed">
+                            No surprising bills. We offer fixed-scope structures, customized retainer levels, and regular transparent tracking reports.
+                        </p>
+                    </div>
+
+                    <!-- Value Card 3 -->
+                    <div class="border border-stone-800 p-8 hover:border-primary-500/50 transition-colors duration-300 bg-stone-850/50">
+                        <div class="w-10 h-10 border border-primary-500/30 rounded-none flex items-center justify-center text-primary-400 mb-6">
+                            <i data-lucide="activity" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium text-white mb-3">Proactive Defense</h3>
+                        <p class="text-stone-400 text-xs leading-relaxed">
+                            We design robust preemptive structures instead of simply reacting to conflicts, limiting vulnerabilities ahead of escalation.
+                        </p>
+                    </div>
+
+                    <!-- Value Card 4 -->
+                    <div class="border border-stone-800 p-8 hover:border-primary-500/50 transition-colors duration-300 bg-stone-850/50">
+                        <div class="w-10 h-10 border border-primary-500/30 rounded-none flex items-center justify-center text-primary-400 mb-6">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="font-serif text-xl font-medium text-white mb-3">Cross-Border Scope</h3>
+                        <p class="text-stone-400 text-xs leading-relaxed">
+                            A seamless network spanning the primary financial and regulatory hubs across US, European and Asian jurisdictions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic tab switcher allowing exploration of services, typical timelines, and primary targets -->
+    <section id="expertise" class="py-24 bg-[#FAF9F5] border-b border-primary-200/40" x-data="{ currentTab: 'corporate' }">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 space-y-4 md:space-y-0">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-medium">Areas of Impact</span>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-stone-950 tracking-tight">Our Professional Focus</h2>
+                </div>
+                <p class="text-stone-600 text-sm max-w-sm leading-relaxed">
+                    Customized legal solutions designed to navigate highly complex modern business and intellectual landscapes.
+                </p>
+            </div>
+
+            <!-- Tab Switchers (Sleek pill design matching premium standards) -->
+            <div class="flex flex-wrap gap-2 border-b border-primary-200/50 pb-4 mb-12">
+                <button @click="currentTab = 'corporate'" :class="currentTab === 'corporate' ? 'border-b-2 border-stone-950 text-stone-950 font-semibold' : 'text-stone-500 hover:text-stone-850'" class="px-6 py-3 text-xs uppercase tracking-widest font-medium transition-all duration-200">
+                    Corporate & M&A
+                </button>
+                <button @click="currentTab = 'property'" :class="currentTab === 'property' ? 'border-b-2 border-stone-950 text-stone-950 font-semibold' : 'text-stone-500 hover:text-stone-850'" class="px-6 py-3 text-xs uppercase tracking-widest font-medium transition-all duration-200">
+                    Intellectual Property
+                </button>
+                <button @click="currentTab = 'wealth'" :class="currentTab === 'wealth' ? 'border-b-2 border-stone-950 text-stone-950 font-semibold' : 'text-stone-500 hover:text-stone-850'" class="px-6 py-3 text-xs uppercase tracking-widest font-medium transition-all duration-200">
+                    Private Wealth Advisory
+                </button>
+                <button @click="currentTab = 'disputes'" :class="currentTab === 'disputes' ? 'border-b-2 border-stone-950 text-stone-950 font-semibold' : 'text-stone-500 hover:text-stone-850'" class="px-6 py-3 text-xs uppercase tracking-widest font-medium transition-all duration-200">
+                    High-Stakes Litigation
+                </button>
+            </div>
+
+            <!-- Tab Contents (With dynamic transition states) -->
+            <div class="bg-white border border-primary-200/30 p-8 md:p-12 shadow-sm relative min-h-[400px] flex items-center">
+                
+                <!-- Tab Corporate -->
+                <div x-show="currentTab === 'corporate'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-primary-600 font-serif text-lg italic">Strategic Corporate Infrastructure</span>
+                        <h3 class="font-serif text-3xl md:text-4xl font-light text-stone-950">Scale, acquire, and trade enterprise value securely.</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            From strategic early-stage venture architecture to complex multi-jurisdictional acquisitions, we advise leadership, boards, and corporate committees on corporate development, regulatory structures, and transactional integrity.
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Cross-border Mergers & Acquisitions</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Venture Seed & Growth Financings</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Corporate Governance Advisory</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Spin-offs & Strategic Joint Ventures</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 bg-[#FAF9F5] p-6 border border-primary-100 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-widest text-primary-600 font-semibold mb-3">Key Focus Indicators</h4>
+                            <p class="text-stone-500 text-xs mb-4">A snapshot of corporate transaction performance metrics over the last calendar year.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Average Deal Close Cycle</span>
+                                <span class="text-xs font-semibold text-stone-900">22 Days</span>
+                            </div>
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Pre-Vetting Regulatory Approvals</span>
+                                <span class="text-xs font-semibold text-stone-900">100% Success</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-xs text-stone-700">Average Series A Round Value</span>
+                                <span class="text-xs font-semibold text-stone-900">$18M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Intellectual Property -->
+                <div x-show="currentTab === 'property'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12" style="display: none;">
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-primary-600 font-serif text-lg italic">Defensive IP Safeguards</span>
+                        <h3 class="font-serif text-3xl md:text-4xl font-light text-stone-950">Patents, codebases, and global licensing rights.</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            In a technology-dominated business global landscape, digital, biopharmaceutical, and branding IP are critical components of enterprise equity. We secure, defend, and license foundational IP portfolios with maximum vigor.
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>AI & Codebase Proprietary Defense</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>International Trademark Auditing</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Cross-border Licensing Agreements</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Patent Landscape Architecture</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 bg-[#FAF9F5] p-6 border border-primary-100 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-widest text-primary-600 font-semibold mb-3">IP Capabilities</h4>
+                            <p class="text-stone-500 text-xs mb-4">Securing your core innovations in highly litigious tech markets.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">WIPO Patent Filings</span>
+                                <span class="text-xs font-semibold text-stone-900">Global Hub Integration</span>
+                            </div>
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Trade Secrets Protected</span>
+                                <span class="text-xs font-semibold text-stone-900">$850M+ Valuation</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-xs text-stone-700">Defense Rate</span>
+                                <span class="text-xs font-semibold text-stone-900">96.8% Success</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Private Wealth -->
+                <div x-show="currentTab === 'wealth'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12" style="display: none;">
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-primary-600 font-serif text-lg italic">Intergenerational Structuring</span>
+                        <h3 class="font-serif text-3xl md:text-4xl font-light text-stone-950">Preserving family heritage, trusts, and capital integrity.</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            Serving ultra-high-net-worth families, family offices, and complex trust holdings. We build impenetrable asset protection layouts, plan tax transitions, and manage governance and philanthropy vehicles smoothly.
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Offshore/Onshore Trust Design</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Intergenerational Asset Tax Shielding</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Philanthropic Endowment Vehicles</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Multi-Family Office Legal Strategy</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 bg-[#FAF9F5] p-6 border border-primary-100 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-widest text-primary-600 font-semibold mb-3">Portfolio Safeguards</h4>
+                            <p class="text-stone-500 text-xs mb-4">Dedicated structural protection designed for quiet continuity.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Assets Supervised</span>
+                                <span class="text-xs font-semibold text-stone-900">$1.2B Net Worth</span>
+                            </div>
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Generational Transfers</span>
+                                <span class="text-xs font-semibold text-stone-900">Zero Dispute Rate</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-xs text-stone-700">Primary Jurisdictions</span>
+                                <span class="text-xs font-semibold text-stone-900">CH, US, SG, LI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Disputes -->
+                <div x-show="currentTab === 'disputes'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12" style="display: none;">
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-primary-600 font-serif text-lg italic">Aggressive Courtroom Advocacy</span>
+                        <h3 class="font-serif text-3xl md:text-4xl font-light text-stone-950">Resolving multi-million dollar business and regulatory fights.</h3>
+                        <p class="text-stone-600 text-sm leading-relaxed">
+                            When commercial differences escalate, our elite litigators defend clients at international courts, high-profile arbitration commissions, and regulatory agency tribunals with robust preparation and decisive clarity.
+                        </p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-stone-700 font-medium">
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>High-Stakes Commercial Arbitration</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>White-Collar & Regulatory Inquiries</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>Securities & Shareholders Litigation</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="w-1.5 h-1.5 bg-primary-500 rounded-full"></span>
+                                <span>International Trade Sanctions</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 bg-[#FAF9F5] p-6 border border-primary-100 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xs uppercase tracking-widest text-primary-600 font-semibold mb-3">Litigation Record</h4>
+                            <p class="text-stone-500 text-xs mb-4">Elite performance record inside and outside national & federal courts.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Arbitration Resolution Rate</span>
+                                <span class="text-xs font-semibold text-stone-900">92% Out of Court</span>
+                            </div>
+                            <div class="flex justify-between border-b border-primary-200/40 pb-2">
+                                <span class="text-xs text-stone-700">Largest Trial Verdict Secure</span>
+                                <span class="text-xs font-semibold text-stone-900">$184M Damages</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-xs text-stone-700">Appeals Win Ratio</span>
+                                <span class="text-xs font-semibold text-stone-900">4.8x Peer Avg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- The dynamic multi-step wizard to help prospective clients structure their inquiries and schedule calls -->
+    <section id="planner" class="py-24 bg-stone-900 text-white relative">
+        <div class="max-w-4xl mx-auto px-6">
+            
+            <div class="text-center space-y-4 mb-16">
+                <div class="inline-flex items-center justify-center space-x-2 mx-auto">
+                    <span class="w-8 h-[1px] bg-primary-500"></span>
+                    <span class="text-xs uppercase tracking-[0.2em] text-primary-400 font-medium">Digital Concierge Intake</span>
+                    <span class="w-8 h-[1px] bg-primary-500"></span>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl font-light tracking-tight text-[#FAF9F5]">Design Your Legal Strategy Session</h2>
+                <p class="text-stone-400 text-xs max-w-md mx-auto leading-relaxed">
+                    Provide initial parameters of your legal inquiry. Our AI triage system evaluates details instantly to match with the ideal firm partner.
+                </p>
+            </div>
+
+            <!-- Custom Interactive Multi-Step Form Layout (with Alpine.js state) -->
+            <div x-data="{ 
+                step: 1, 
+                urgency: 'Standard', 
+                area: 'Corporate & Ventures', 
+                brief: '', 
+                clientName: '', 
+                clientEmail: '', 
+                clientPhone: '',
+                sessionPref: 'Virtual Confidential Room',
+                submitted: false,
+                validationError: '',
+                nextStep() {
+                    if (this.step === 1 && !this.area) {
+                        this.validationError = 'Please select a primary legal practice area.';
+                        return;
+                    }
+                    if (this.step === 2 && this.brief.trim().length < 10) {
+                        this.validationError = 'Please share at least a brief summary of your circumstances (min. 10 characters).';
+                        return;
+                    }
+                    this.validationError = '';
+                    this.step++;
+                },
+                prevStep() {
+                    this.validationError = '';
+                    this.step--;
+                },
+                submitForm() {
+                    if (!this.clientName || !this.clientEmail) {
+                        this.validationError = 'Name and Professional Email are required.';
+                        return;
+                    }
+                    this.submitted = true;
+                    this.step = 4;
+                }
+            }" class="bg-stone-850 border border-stone-800 p-8 md:p-12 relative overflow-hidden">
+                
+                <!-- Progress Indicator Lines -->
+                <div class="flex items-center justify-between mb-10 text-[10px] uppercase tracking-widest text-stone-500 font-semibold">
+                    <span :class="step >= 1 ? 'text-primary-400' : 'text-stone-500'">01 / Primary Scope</span>
+                    <span :class="step >= 2 ? 'text-primary-400' : 'text-stone-500'">02 / Incident Details</span>
+                    <span :class="step >= 3 ? 'text-primary-400' : 'text-stone-500'">03 / Schedule Profile</span>
+                </div>
+
+                <div class="w-full bg-stone-800 h-[2px] mb-8 relative">
+                    <div class="absolute bg-primary-500 h-[2px] left-0 top-0 transition-all duration-300" :style="'width: ' + ((step - 1) / 3 * 100) + '%'"></div>
+                </div>
+
+                <!-- Custom Alert Bar (Replaces default browser alert) -->
+                <div x-show="validationError" x-transition class="bg-red-950/40 border border-red-500/30 text-red-200 text-xs p-4 mb-6 rounded-none flex items-center justify-between" style="display: none;">
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="alert-circle" class="w-4 h-4 text-red-400"></i>
+                        <span x-text="validationError"></span>
+                    </div>
+                    <button @click="validationError = ''" class="text-red-300 hover:text-red-100">&times;</button>
+                </div>
+
+                <!-- STEP 1: Select Scope Area -->
+                <div x-show="step === 1" x-transition:enter="transition ease-out duration-300" class="space-y-6">
+                    <h3 class="font-serif text-xl font-light text-[#FAF9F5] mb-4">Under which category does your matter fall?</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button @click="area = 'Corporate & Ventures'" :class="area === 'Corporate & Ventures' ? 'border-primary-500 bg-primary-950/20 text-white' : 'border-stone-800 hover:border-stone-700 bg-stone-900/50'" class="p-6 text-left border rounded-none transition-all duration-200">
+                            <h4 class="font-serif text-lg font-medium text-primary-400">Corporate Strategy</h4>
+                            <p class="text-stone-400 text-[11px] mt-1">M&amp;A transactions, asset sales, board restructuring, seed/series funding rounds.</p>
+                        </button>
+                        <button @click="area = 'IP Protection'" :class="area === 'IP Protection' ? 'border-primary-500 bg-primary-950/20 text-white' : 'border-stone-800 hover:border-stone-700 bg-stone-900/50'" class="p-6 text-left border rounded-none transition-all duration-200">
+                            <h4 class="font-serif text-lg font-medium text-primary-400">IP & Proprietary assets</h4>
+                            <p class="text-stone-400 text-[11px] mt-1">Trademarks, software copyright audit, licensing, commercial infringement disputes.</p>
+                        </button>
+                        <button @click="area = 'Private Wealth'" :class="area === 'Private Wealth' ? 'border-primary-500 bg-primary-950/20 text-white' : 'border-stone-800 hover:border-stone-700 bg-stone-900/50'" class="p-6 text-left border rounded-none transition-all duration-200">
+                            <h4 class="font-serif text-lg font-medium text-primary-400">Wealth Advisory</h4>
+                            <p class="text-stone-400 text-[11px] mt-1">Family trust set-ups, corporate cross-border tax schemes, real-estate acquisitions.</p>
+                        </button>
+                        <button @click="area = 'Litigation & Disputes'" :class="area === 'Litigation & Disputes' ? 'border-primary-500 bg-primary-950/20 text-white' : 'border-stone-800 hover:border-stone-700 bg-stone-900/50'" class="p-6 text-left border rounded-none transition-all duration-200">
+                            <h4 class="font-serif text-lg font-medium text-primary-400">Active Disputes</h4>
+                            <p class="text-stone-400 text-[11px] mt-1">Regulatory legal challenges, white collar investigation prep, high-stakes arbitration.</p>
+                        </button>
+                    </div>
+
+                    <!-- Next Action Bar -->
+                    <div class="flex justify-end pt-6">
+                        <button @click="nextStep()" class="px-8 py-3 bg-primary-500 text-[#FAF9F5] text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-200">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Incident Details & Urgency Level -->
+                <div x-show="step === 2" x-transition:enter="transition ease-out duration-300" style="display: none;" class="space-y-6">
+                    <div>
+                        <h3 class="font-serif text-xl font-light text-[#FAF9F5] mb-2">Configure Urgency Matrix</h3>
+                        <p class="text-stone-400 text-xs mb-4">Selecting appropriate priority level allocates matching standby advisors.</p>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button @click="urgency = 'Standard'" :class="urgency === 'Standard' ? 'bg-stone-900 border-primary-500 text-primary-400' : 'bg-stone-900 border-stone-800 text-stone-400'" class="py-3 border text-xs font-semibold tracking-widest uppercase rounded-none">
+                                Regular Strategy
+                            </button>
+                            <button @click="urgency = 'Urgent'" :class="urgency === 'Urgent' ? 'bg-stone-900 border-amber-500 text-amber-400' : 'bg-stone-900 border-stone-800 text-stone-400'" class="py-3 border text-xs font-semibold tracking-widest uppercase rounded-none">
+                                Active Matter
+                            </button>
+                            <button @click="urgency = 'Critical'" :class="urgency === 'Critical' ? 'bg-stone-900 border-red-500 text-red-400' : 'bg-stone-900 border-stone-800 text-stone-400'" class="py-3 border text-xs font-semibold tracking-widest uppercase rounded-none">
+                                Instant Threat
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block font-serif text-lg font-light text-[#FAF9F5]">Briefly summarize the primary circumstances:</label>
+                        <textarea x-model="brief" rows="4" placeholder="Describe the matter briefly. Limit to crucial strategic elements. Absolute privacy assured." class="w-full bg-stone-900 border border-stone-800 p-4 text-xs text-stone-200 focus:outline-none focus:border-primary-500 placeholder-stone-600 resize-none"></textarea>
+                    </div>
+
+                    <!-- Step 2 Actions -->
+                    <div class="flex justify-between pt-6">
+                        <button @click="prevStep()" class="px-8 py-3 border border-stone-800 text-stone-400 text-xs font-semibold tracking-widest uppercase hover:text-white transition-colors duration-200">
+                            Back
+                        </button>
+                        <button @click="nextStep()" class="px-8 py-3 bg-primary-500 text-[#FAF9F5] text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-200">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Contact & Scheduling Preference -->
+                <div x-show="step === 3" x-transition:enter="transition ease-out duration-300" style="display: none;" class="space-y-6">
+                    <h3 class="font-serif text-xl font-light text-[#FAF9F5] mb-2">Secure Connection Channel</h3>
+                    <p class="text-stone-400 text-xs mb-6">Select your preferred format for the Initial Evaluation.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                        <button @click="sessionPref = 'Virtual Confidential Room'" :class="sessionPref === 'Virtual Confidential Room' ? 'border-primary-500 bg-primary-950/20 text-white' : 'border-stone-800 bg-stone-900/50'" class="p-4 border text-left rounded-none">
+                            <p class="text-xs font-semibold tracking-wider text-[#FAF9F5]">Virtual Encrypted Video Call</p>
+                            <p class="text-[10px] text-stone-400 mt-1">Held inside our decentralized, end-to-end client server.</p>
+                        </button>
+                        <button @click="sessionPref = 'Physical Office Visit'" :class="sessionPref === 'Physical Office Visit' ? 'border-primary-500 bg-primary-950/20 text-white' : 'border-stone-800 bg-stone-900/50'" class="p-4 border text-left rounded-none">
+                            <p class="text-xs font-semibold tracking-wider text-[#FAF9F5]">In-Person Advisory Room</p>
+                            <p class="text-[10px] text-stone-400 mt-1">Private meeting scheduled at our physical corporate suites.</p>
+                        </button>
+                    </div>
+
+                    <!-- Personal Information Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-widest text-stone-400 font-semibold block">Full Representative Name *</label>
+                            <input type="text" x-model="clientName" placeholder="E.g., Alexander Mercer" class="w-full bg-stone-900 border border-stone-800 p-3 text-xs text-white focus:outline-none focus:border-primary-500">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-widest text-stone-400 font-semibold block">Professional Corporate Email *</label>
+                            <input type="email" x-model="clientEmail" placeholder="E.g., mercer@enterprise.com" class="w-full bg-stone-900 border border-stone-800 p-3 text-xs text-white focus:outline-none focus:border-primary-500">
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-[10px] uppercase tracking-widest text-stone-400 font-semibold block">Confidential Phone Line (Optional)</label>
+                            <input type="tel" x-model="clientPhone" placeholder="+1 (555) 000-0000" class="w-full bg-stone-900 border border-stone-800 p-3 text-xs text-white focus:outline-none focus:border-primary-500">
+                        </div>
+                    </div>
+
+                    <!-- Step 3 Actions -->
+                    <div class="flex justify-between pt-6">
+                        <button @click="prevStep()" class="px-8 py-3 border border-stone-800 text-stone-400 text-xs font-semibold tracking-widest uppercase hover:text-white transition-colors duration-200">
+                            Back
+                        </button>
+                        <button @click="submitForm()" class="px-8 py-3 bg-primary-500 text-stone-900 text-xs font-bold tracking-widest uppercase hover:bg-primary-400 hover:text-stone-950 transition-colors duration-200">
+                            Request Allocation
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Success / Confirmation Output -->
+                <div x-show="step === 4" x-transition:enter="transition ease-out duration-300" style="display: none;" class="text-center py-12 space-y-6">
+                    <div class="w-16 h-16 bg-primary-500/10 border border-primary-500/50 rounded-full flex items-center justify-center mx-auto text-primary-400 mb-6 animate-pulse">
+                        <i data-lucide="check-circle-2" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-light text-[#FAF9F5]">Allocation Secured</h3>
+                    <p class="text-stone-400 text-sm max-w-lg mx-auto leading-relaxed">
+                        Inquiry received. Due to the high sensitivity, our executive clerk will execute a secure callback verification on the provided contact channel within <strong class="text-primary-400">2 hours</strong>.
+                    </p>
+
+                    <!-- Summary of submission details -->
+                    <div class="max-w-md mx-auto bg-stone-900 p-6 border border-stone-800 text-left space-y-4">
+                        <h4 class="text-xs uppercase tracking-widest text-primary-400 font-semibold border-b border-stone-800 pb-2">Submitted Intake Configuration</h4>
+                        <div class="grid grid-cols-2 gap-y-2 text-xs">
+                            <span class="text-stone-500">Representative:</span>
+                            <span class="text-stone-200 font-medium" x-text="clientName"></span>
+                            
+                            <span class="text-stone-500">Inquiry Area:</span>
+                            <span class="text-stone-200 font-medium" x-text="area"></span>
+                            
+                            <span class="text-stone-500">Declared Urgency:</span>
+                            <span class="text-stone-200 font-medium font-semibold" :class="urgency === 'Critical' ? 'text-red-400' : 'text-stone-200'" x-text="urgency"></span>
+                            
+                            <span class="text-stone-500">Consultation Link:</span>
+                            <span class="text-stone-200 font-medium italic" x-text="sessionPref"></span>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <button @click="step = 1; submitted = false; brief = ''; clientName = ''; clientEmail = ''; clientPhone = ''" class="text-xs uppercase tracking-widest text-primary-400 hover:text-primary-300 underline underline-offset-4">
+                            Submit Another Request
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium biographical presentation of legal partners with modern hover interactions -->
+    <section id="team" class="py-24 bg-[#FAF9F5] border-t border-b border-primary-200/40">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Team Intro -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end mb-20">
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-medium">Exceptional Legal Minds</span>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-stone-950 tracking-tight leading-tight">
+                        Led by Pioneers in Corporate and International Law.
+                    </h2>
+                </div>
+                <div class="lg:col-span-6">
+                    <p class="text-stone-600 text-sm leading-relaxed max-w-lg">
+                        Our partners bring deep institutional training from top global firms alongside the agility, dedication, and individual concentration of a focused premium boutique advisory.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Founders Grid with individual bio popups simulated -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Partner 1 -->
+                <div class="group bg-white border border-primary-200/30 p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative" x-data="{ bioOpen: false }">
+                    <div>
+                        <!-- Minimal Avatar Placeholder Graphic instead of generic faces -->
+                        <div class="w-full aspect-square bg-stone-100 border border-primary-100/50 mb-6 flex items-center justify-center relative overflow-hidden">
+                            <span class="font-serif text-8xl text-stone-200/80 absolute select-none">HA</span>
+                            <!-- Clean architectural SVG representing legal hierarchy -->
+                            <svg class="w-16 h-16 text-primary-500/20 group-hover:text-primary-500/40 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.75" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-serif text-2xl text-stone-950 font-medium">Helena Aurelius</h3>
+                            <span class="text-[10px] uppercase tracking-widest text-primary-600 font-semibold">Managing Partner</span>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-widest text-stone-400 mt-1 mb-4">M&amp;A • Strategic Venture Structuring</p>
+                        <p class="text-stone-600 text-xs leading-relaxed line-clamp-3">
+                            With over 18 years of transactional experience advising elite boards across Swiss and Anglo-Saxon legal structures, Helena acts as high-end mediator in major technology and enterprise acquisitions.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-primary-100 flex items-center justify-between">
+                        <button @click="bioOpen = true" class="text-xs uppercase tracking-widest text-primary-600 font-semibold hover:text-stone-950 transition-colors duration-200 flex items-center space-x-1">
+                            <span>Read Bio</span>
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <span class="text-[10px] font-mono text-stone-400">helena@aurelius.law</span>
+                    </div>
+
+                    <!-- Modern Overlay Modal for Helena's full Bio -->
+                    <template x-if="bioOpen">
+                        <div class="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-6" @click.away="bioOpen = false">
+                            <div class="bg-white max-w-lg w-full p-8 md:p-10 relative border border-primary-200" @click.stop>
+                                <button @click="bioOpen = false" class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 focus:outline-none">
+                                    <i data-lucide="x" class="w-6 h-6"></i>
+                                </button>
+                                <div class="space-y-6">
+                                    <div class="inline-flex items-center space-x-2">
+                                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-semibold">Partner Profile</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-serif text-3xl font-light text-stone-950">Helena Aurelius</h4>
+                                        <p class="text-xs uppercase tracking-widest text-primary-600 mt-1">Founding Partner &amp; Lead Architect</p>
+                                    </div>
+                                    <div class="space-y-4 text-stone-600 text-xs leading-relaxed">
+                                        <p>Helena has built an impeccable global reputation orchestrating transactional defense networks for technology pioneers and massive wealth portfolios across Geneva, London, and New York.</p>
+                                        <p>Formerly a principal advisory counselor for Magic Circle institutions, she departed to form Aurelius &amp; Partners to satisfy high-net-worth demand for absolute strategic focus without administrative delay.</p>
+                                        <div class="border-t border-primary-100 pt-4">
+                                            <p class="font-semibold text-stone-850">Key Achievements:</p>
+                                            <ul class="list-disc pl-4 mt-2 space-y-1">
+                                                <li>Advised on $1.4B cross-border software enterprise merger (2024)</li>
+                                                <li>Doctorate in Intellectual Property Rights (University of Zurich)</li>
+                                                <li>Recognized as leading Venture Advisor in Legal 500 (2021 - 2025)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button @click="bioOpen = false" class="w-full py-3 bg-stone-950 text-white text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-200">
+                                        Close Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Partner 2 -->
+                <div class="group bg-white border border-primary-200/30 p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative" x-data="{ bioOpen: false }">
+                    <div>
+                        <!-- Minimal Avatar Placeholder Graphic -->
+                        <div class="w-full aspect-square bg-stone-100 border border-primary-100/50 mb-6 flex items-center justify-center relative overflow-hidden">
+                            <span class="font-serif text-8xl text-stone-200/80 absolute select-none">MS</span>
+                            <svg class="w-16 h-16 text-primary-500/20 group-hover:text-primary-500/40 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.75" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11.5a13.96 13.96 0 00-2.29-6.18l-.054-.09A13.945 13.945 0 003 5.708M16.5 11.5A13.961 13.961 0 0014 5.708m0 11.39A13.96 13.96 0 0112 21c-.77 0-1.527-.088-2.253-.258m4.506-4.484a13.947 13.947 0 01-1.253 4.227M16.5 11.5c0 1.253-.08 2.486-.245 3.7a13.9 13.9 0 01-4.255 7.051" />
+                            </svg>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-serif text-2xl text-stone-950 font-medium">Marc Stone</h3>
+                            <span class="text-[10px] uppercase tracking-widest text-primary-600 font-semibold">Litigation Partner</span>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-widest text-stone-400 mt-1 mb-4">Federal Appeals • High-Stakes Arbitration</p>
+                        <p class="text-stone-600 text-xs leading-relaxed line-clamp-3">
+                            A battle-tested litigator known for defending corporate positions against regulatory agencies and resolving multi-million dollar asset recovery conflicts internationally.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-primary-100 flex items-center justify-between">
+                        <button @click="bioOpen = true" class="text-xs uppercase tracking-widest text-primary-600 font-semibold hover:text-stone-950 transition-colors duration-200 flex items-center space-x-1">
+                            <span>Read Bio</span>
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <span class="text-[10px] font-mono text-stone-400">marc@aurelius.law</span>
+                    </div>
+
+                    <!-- Modern Overlay Modal for Marc's Bio -->
+                    <template x-if="bioOpen">
+                        <div class="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-6" @click.away="bioOpen = false">
+                            <div class="bg-white max-w-lg w-full p-8 md:p-10 relative border border-primary-200" @click.stop>
+                                <button @click="bioOpen = false" class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 focus:outline-none">
+                                    <i data-lucide="x" class="w-6 h-6"></i>
+                                </button>
+                                <div class="space-y-6">
+                                    <div class="inline-flex items-center space-x-2">
+                                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-semibold">Partner Profile</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-serif text-3xl font-light text-stone-950">Marc Stone</h4>
+                                        <p class="text-xs uppercase tracking-widest text-primary-600 mt-1">Lead Litigator &amp; Corporate Defender</p>
+                                    </div>
+                                    <div class="space-y-4 text-stone-600 text-xs leading-relaxed">
+                                        <p>Marc represents corporations, high-level directors, and stakeholders inside complex litigation disputes. He commands courtroom settings with highly structured factual reasoning and formidable calm.</p>
+                                        <p>Over two decades, Marc has successfully defended foundational cases before regional and supreme tribunals, achieving critical dispute settlements even under aggressive regulatory pushback.</p>
+                                        <div class="border-t border-primary-100 pt-4">
+                                            <p class="font-semibold text-stone-850">Key Achievements:</p>
+                                            <ul class="list-disc pl-4 mt-2 space-y-1">
+                                                <li>Successfully defended sovereign asset recovery claim worth $210M (2023)</li>
+                                                <li>Master of Laws (LL.M.) from Columbia Law School</li>
+                                                <li>Member of the Association of International Arbitrators</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button @click="bioOpen = false" class="w-full py-3 bg-stone-950 text-white text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-200">
+                                        Close Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Partner 3 -->
+                <div class="group bg-white border border-primary-200/30 p-6 flex flex-col justify-between hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative" x-data="{ bioOpen: false }">
+                    <div>
+                        <!-- Minimal Avatar Placeholder Graphic -->
+                        <div class="w-full aspect-square bg-stone-100 border border-primary-100/50 mb-6 flex items-center justify-center relative overflow-hidden">
+                            <span class="font-serif text-8xl text-stone-200/80 absolute select-none">CK</span>
+                            <svg class="w-16 h-16 text-primary-500/20 group-hover:text-primary-500/40 transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.75" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-serif text-2xl text-stone-950 font-medium">Clara Kaelin</h3>
+                            <span class="text-[10px] uppercase tracking-widest text-primary-600 font-semibold">Tax &amp; Trust Partner</span>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-widest text-stone-400 mt-1 mb-4">Cross-Border Assets • Global Tax Architect</p>
+                        <p class="text-stone-600 text-xs leading-relaxed line-clamp-3">
+                            Specializing in cross-border structural compliance, private foundation formation, and multi-generational tax optimization across European and Asian financial ecosystems.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-primary-100 flex items-center justify-between">
+                        <button @click="bioOpen = true" class="text-xs uppercase tracking-widest text-primary-600 font-semibold hover:text-stone-950 transition-colors duration-200 flex items-center space-x-1">
+                            <span>Read Bio</span>
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                        <span class="text-[10px] font-mono text-stone-400">clara@aurelius.law</span>
+                    </div>
+
+                    <!-- Modern Overlay Modal for Clara's Bio -->
+                    <template x-if="bioOpen">
+                        <div class="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-6" @click.away="bioOpen = false">
+                            <div class="bg-white max-w-lg w-full p-8 md:p-10 relative border border-primary-200" @click.stop>
+                                <button @click="bioOpen = false" class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 focus:outline-none">
+                                    <i data-lucide="x" class="w-6 h-6"></i>
+                                </button>
+                                <div class="space-y-6">
+                                    <div class="inline-flex items-center space-x-2">
+                                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-semibold">Partner Profile</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-serif text-3xl font-light text-stone-950">Clara Kaelin</h4>
+                                        <p class="text-xs uppercase tracking-widest text-primary-600 mt-1">Tax Architect &amp; Intergenerational Counsel</p>
+                                    </div>
+                                    <div class="space-y-4 text-stone-600 text-xs leading-relaxed">
+                                        <p>Clara oversees asset defense structures and tax optimization audits for massive generational holdings, trusts, and multinational private conglomerates.</p>
+                                        <p>She specializes in maintaining bulletproof security across regulatory developments, preventing unexpected capital attrition or succession complications.</p>
+                                        <div class="border-t border-primary-100 pt-4">
+                                            <p class="font-semibold text-stone-850">Key Achievements:</p>
+                                            <ul class="list-disc pl-4 mt-2 space-y-1">
+                                                <li>Engineered international corporate restructuring saving $45M tax-liability legally (2024)</li>
+                                                <li>LL.M in Taxation (Georgetown University Law Center)</li>
+                                                <li>Regular consultant to European private banking structures</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <button @click="bioOpen = false" class="w-full py-3 bg-stone-950 text-white text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-200">
+                                        Close Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist editorial quotes from established partners and institutional clients -->
+    <section class="py-24 bg-stone-900 text-white relative" x-data="{ 
+        activeIndex: 0,
+        testimonials: [
+            { quote: 'Aurelius & Partners provided us with impeccable strategic foresight. Their ability to structure high-value transactions across borders with absolute clarity is unmatched in modern advocacy.', author: 'Jonathan Vane', title: 'CEO, Vane & Associates Group' },
+            { quote: 'We shifted our corporate representation to Aurelius in 2021. Their flat fee structures, direct partner-to-client communication lines, and meticulous documentation are exceptional.', author: 'Clara Dupond', title: 'Chief Counsel, Geneva BioTech' },
+            { quote: 'Their IP litigation strategy saved our underlying software patents from aggressive competitor invalidation. A highly responsive, premium firm that commands results.', author: 'Dr. Aaron Chen', title: 'Founder, Synapse Neural Network' }
+        ]
+    }">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center justify-center space-x-2 mb-12">
+                <span class="w-8 h-[1px] bg-primary-500"></span>
+                <span class="text-xs uppercase tracking-[0.2em] text-primary-400 font-medium">The Client Experience</span>
+                <span class="w-8 h-[1px] bg-primary-500"></span>
+            </div>
+
+            <!-- Carousel Display -->
+            <div class="relative min-h-[220px] flex items-center justify-center">
+                <template x-for="(t, index) in testimonials" :key="index">
+                    <div x-show="activeIndex === index" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" class="space-y-6">
+                        <blockquote class="font-serif text-2xl md:text-3xl lg:text-4xl italic text-primary-100 leading-relaxed font-light">
+                            "<span x-text="t.quote"></span>"
+                        </blockquote>
+                        <div class="pt-4">
+                            <cite class="text-xs uppercase tracking-widest text-[#FAF9F5] font-semibold not-italic block" x-text="t.author"></cite>
+                            <span class="text-[10px] uppercase tracking-wider text-primary-400" x-text="t.title"></span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Pagination Dots -->
+            <div class="flex items-center justify-center space-x-3 mt-10">
+                <template x-for="(t, index) in testimonials" :key="index">
+                    <button @click="activeIndex = index" :class="activeIndex === index ? 'w-10 bg-primary-500' : 'w-2 bg-stone-700 hover:bg-stone-500'" class="h-1 rounded-none transition-all duration-300"></button>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist, publication-style blog index for modern authority signals -->
+    <section id="insights" class="py-24 bg-[#FAF9F5]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Section Title -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 space-y-4 md:space-y-0">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-medium">Aurelius Publications</span>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-stone-950 tracking-tight">Executive Intelligence</h2>
+                </div>
+                <p class="text-stone-600 text-sm max-w-sm leading-relaxed">
+                    Our partner insights provide clarity on critical regulatory developments, cross-border tax compliance, and patent frameworks.
+                </p>
+            </div>
+
+            <!-- Insights Feed Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <article class="group bg-white border border-primary-200/20 p-8 flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between text-[10px] text-stone-500 tracking-wider uppercase font-semibold">
+                            <span>Corporate M&amp;A</span>
+                            <span>May 2026</span>
+                        </div>
+                        <h3 class="font-serif text-2xl text-stone-950 font-medium hover:text-primary-600 transition-colors duration-200">
+                            <a href="#">The Evolution of Cross-Border Asset Transfers Post-Regulation.</a>
+                        </h3>
+                        <p class="text-stone-600 text-xs leading-relaxed font-light">
+                            Analyzing structural adaptations required for technology-driven portfolios shifting holding frameworks across Anglo-Saxon jurisdictions.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-primary-100 flex items-center justify-between">
+                        <span class="text-[10px] uppercase tracking-wider text-primary-600 font-semibold">Helena Aurelius</span>
+                        <span class="text-stone-400 text-xs font-mono">6 min read</span>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="group bg-white border border-primary-200/20 p-8 flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between text-[10px] text-stone-500 tracking-wider uppercase font-semibold">
+                            <span>Tax Architecture</span>
+                            <span>April 2026</span>
+                        </div>
+                        <h3 class="font-serif text-2xl text-stone-950 font-medium hover:text-primary-600 transition-colors duration-200">
+                            <a href="#">Structuring Generational Private Foundations in Swiss Ecosystems.</a>
+                        </h3>
+                        <p class="text-stone-600 text-xs leading-relaxed font-light">
+                            A comparative review of the stability, privacy parameters, and transition protocols within modern European wealth hubs.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-primary-100 flex items-center justify-between">
+                        <span class="text-[10px] uppercase tracking-wider text-primary-600 font-semibold">Clara Kaelin</span>
+                        <span class="text-stone-400 text-xs font-mono">11 min read</span>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="group bg-white border border-primary-200/20 p-8 flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between text-[10px] text-stone-500 tracking-wider uppercase font-semibold">
+                            <span>Intellectual Property</span>
+                            <span>March 2026</span>
+                        </div>
+                        <h3 class="font-serif text-2xl text-stone-950 font-medium hover:text-primary-600 transition-colors duration-200">
+                            <a href="#">AI-Generated Code: Defensive Patent Strategies For Founders.</a>
+                        </h3>
+                        <p class="text-stone-600 text-xs leading-relaxed font-light">
+                            How to establish proprietary security structures when leveraging large language systems inside mission-critical proprietary codebases.
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-4 border-t border-primary-100 flex items-center justify-between">
+                        <span class="text-[10px] uppercase tracking-wider text-primary-600 font-semibold">Marc Stone</span>
+                        <span class="text-stone-400 text-xs font-mono">8 min read</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accessible, transparent legal firm service parameters with modern accordions -->
+    <section class="py-24 bg-stone-900 text-white relative">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center space-y-4 mb-16">
+                <div class="inline-flex items-center justify-center space-x-2 mx-auto">
+                    <span class="w-8 h-[1px] bg-primary-500"></span>
+                    <span class="text-xs uppercase tracking-[0.2em] text-primary-400 font-medium">Clear Explanations</span>
+                    <span class="w-8 h-[1px] bg-primary-500"></span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl font-light text-[#FAF9F5]">Navigating Your Representation</h2>
+            </div>
+
+            <!-- Custom Elegant Accordions via Alpine -->
+            <div class="space-y-4" x-data="{ activeFaq: 1 }">
+                
+                <!-- FAQ Item 1 -->
+                <div class="border-b border-stone-850 pb-4">
+                    <button @click="activeFaq = activeFaq === 1 ? null : 1" class="w-full py-4 flex items-center justify-between text-left focus:outline-none group">
+                        <span class="font-serif text-lg md:text-xl text-[#FAF9F5] group-hover:text-primary-400 transition-colors duration-200">What are the primary engagement terms and fee architectures?</span>
+                        <span class="ml-4 text-primary-400">
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" :class="activeFaq === 1 ? 'rotate-180' : ''"></i>
+                        </span>
+                    </button>
+                    <div x-show="activeFaq === 1" x-collapse x-transition class="pr-12 text-stone-400 text-xs leading-relaxed pb-4" style="display: none;">
+                        Unlike typical billable-hour metrics, we operate on pre-vetted fixed pricing schedules and customized quarterly strategy retainers. Each milestone is clearly scoped and calculated in advance to guarantee zero surprises and absolute financial clarity.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border-b border-stone-850 pb-4">
+                    <button @click="activeFaq = activeFaq === 2 ? null : 2" class="w-full py-4 flex items-center justify-between text-left focus:outline-none group">
+                        <span class="font-serif text-lg md:text-xl text-[#FAF9F5] group-hover:text-primary-400 transition-colors duration-200">How quickly are urgent or critical regulatory events responded to?</span>
+                        <span class="ml-4 text-primary-400">
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" :class="activeFaq === 2 ? 'rotate-180' : ''"></i>
+                        </span>
+                    </button>
+                    <div x-show="activeFaq === 2" x-collapse x-transition class="pr-12 text-stone-400 text-xs leading-relaxed pb-4" style="display: none;">
+                        Intake requests flagged with <strong class="text-red-400">"Critical"</strong> urgency bypass our standard queue immediately. Our partners monitor strategic alert channels around the clock, guaranteeing initial callback evaluation within 2 hours.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border-b border-stone-850 pb-4">
+                    <button @click="activeFaq = activeFaq === 3 ? null : 3" class="w-full py-4 flex items-center justify-between text-left focus:outline-none group">
+                        <span class="font-serif text-lg md:text-xl text-[#FAF9F5] group-hover:text-primary-400 transition-colors duration-200">Are communications handled entirely via encrypted networks?</span>
+                        <span class="ml-4 text-primary-400">
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" :class="activeFaq === 3 ? 'rotate-180' : ''"></i>
+                        </span>
+                    </button>
+                    <div x-show="activeFaq === 3" x-collapse x-transition class="pr-12 text-stone-400 text-xs leading-relaxed pb-4" style="display: none;">
+                        We deploy custom corporate storage layers and decentralized client portals with strict end-to-end PGP configurations. Document access, file transfers, and video meetings utilize robust private cryptography protocols.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border-b border-stone-850 pb-4">
+                    <button @click="activeFaq = activeFaq === 4 ? null : 4" class="w-full py-4 flex items-center justify-between text-left focus:outline-none group">
+                        <span class="font-serif text-lg md:text-xl text-[#FAF9F5] group-hover:text-primary-400 transition-colors duration-200">Do you offer representation for global ventures with international nodes?</span>
+                        <span class="ml-4 text-primary-400">
+                            <i data-lucide="chevron-down" class="w-5 h-5 transition-transform duration-300" :class="activeFaq === 4 ? 'rotate-180' : ''"></i>
+                        </span>
+                    </button>
+                    <div x-show="activeFaq === 4" x-collapse x-transition class="pr-12 text-stone-400 text-xs leading-relaxed pb-4" style="display: none;">
+                        Absolutely. Our team operates cross-border, with legal certification nodes across Zürich, Geneva, London, Frankfurt, New York, and Singapore, allowing unified execution of strategic transactional and corporate protection schemes.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist visual location display + dynamic custom callback request form -->
+    <section id="contact" class="py-24 bg-[#FAF9F5]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <!-- Left Side: Suite Addresses & Direct Lines -->
+            <div class="lg:col-span-5 space-y-10">
+                <div class="space-y-4">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="w-8 h-[1px] bg-primary-500"></span>
+                        <span class="text-xs uppercase tracking-[0.2em] text-primary-600 font-medium">Suites Locations</span>
+                    </div>
+                    <h2 class="font-serif text-4xl md:text-5xl font-light text-stone-950 tracking-tight">Our Jurisdictions</h2>
+                </div>
+
+                <div class="space-y-8 text-xs">
+                    <!-- Zürich Suite -->
+                    <div class="border-l border-primary-400 pl-4 space-y-2">
+                        <h3 class="font-serif text-lg font-semibold text-stone-900 uppercase tracking-wider">Zürich Head Office</h3>
+                        <p class="text-stone-600">Bahnhofstrasse 44, 8001 Zürich, Switzerland</p>
+                        <p class="text-[10px] font-mono text-stone-500">zurich@aurelius.law • +41 44 200 12 11</p>
+                    </div>
+
+                    <!-- London Suite -->
+                    <div class="border-l border-primary-400 pl-4 space-y-2">
+                        <h3 class="font-serif text-lg font-semibold text-stone-900 uppercase tracking-wider">London Mayfair Suite</h3>
+                        <p class="text-stone-600">28 Bruton St, Mayfair, London W1J 6QW, UK</p>
+                        <p class="text-[10px] font-mono text-stone-500">london@aurelius.law • +44 20 7946 0192</p>
+                    </div>
+
+                    <!-- New York Suite -->
+                    <div class="border-l border-primary-400 pl-4 space-y-2">
+                        <h3 class="font-serif text-lg font-semibold text-stone-900 uppercase tracking-wider">New York Suite</h3>
+                        <p class="text-stone-600">600 Lexington Ave, New York, NY 10022, USA</p>
+                        <p class="text-[10px] font-mono text-stone-500">ny@aurelius.law • +1 212 555 0148</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Beautiful Interactive Contact Form -->
+            <div class="lg:col-span-7 bg-white border border-primary-200/30 p-8 md:p-12 shadow-sm" x-data="{ 
+                contactName: '', 
+                contactEmail: '', 
+                contactMessage: '',
+                contactSent: false,
+                validationError: '',
+                sendContact() {
+                    if (!this.contactName || !this.contactEmail || !this.contactMessage) {
+                        this.validationError = 'All fields are strictly required for security screening.';
+                        return;
+                    }
+                    this.validationError = '';
+                    this.contactSent = true;
+                }
+            }">
+                <h3 class="font-serif text-3xl font-light text-stone-950 mb-4">Direct Message Suite</h3>
+                <p class="text-stone-600 text-xs mb-8 leading-relaxed">
+                    Clients requesting traditional counsel can transmit high-level statements directly to our central security terminal below.
+                </p>
+
+                <!-- Feedback Box -->
+                <div x-show="validationError" x-transition class="bg-red-50 border border-red-200 text-red-800 text-xs p-4 mb-6 flex items-center space-x-2" style="display: none;">
+                    <i data-lucide="alert-circle" class="w-4 h-4 text-red-600"></i>
+                    <span x-text="validationError"></span>
+                </div>
+
+                <div x-show="!contactSent" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold block">Your Identity *</label>
+                            <input type="text" x-model="contactName" placeholder="E.g., Dr. Robert Vance" class="w-full bg-[#FAF9F5] border border-primary-200 p-3 text-xs text-stone-900 focus:outline-none focus:border-primary-500">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold block">Confidential Email *</label>
+                            <input type="email" x-model="contactEmail" placeholder="vance@vancebiotech.com" class="w-full bg-[#FAF9F5] border border-primary-200 p-3 text-xs text-stone-900 focus:outline-none focus:border-primary-500">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-[10px] uppercase tracking-widest text-stone-500 font-semibold block">Secure Statement *</label>
+                        <textarea x-model="contactMessage" rows="5" placeholder="Details of strategic legal request..." class="w-full bg-[#FAF9F5] border border-primary-200 p-3 text-xs text-stone-900 focus:outline-none focus:border-primary-500 resize-none"></textarea>
+                    </div>
+
+                    <div class="pt-2">
+                        <button @click="sendContact()" class="w-full py-4 bg-stone-900 text-white text-xs font-semibold tracking-widest uppercase hover:bg-primary-600 transition-colors duration-200">
+                            Transmit Statement
+                        </button>
+                    </div>
+                </div>
+
+                <div x-show="contactSent" x-transition class="text-center py-12 space-y-4" style="display: none;">
+                    <div class="w-12 h-12 bg-primary-100 text-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="font-serif text-2xl text-stone-950 font-medium">Transmission Successful</h4>
+                    <p class="text-stone-600 text-xs max-w-sm mx-auto leading-relaxed">
+                        Your secure statement has been logged onto our private terminal. A certified legal partner will formulate an initial structural review within 24 business hours.
+                    </p>
+                    <button @click="contactSent = false; contactName = ''; contactEmail = ''; contactMessage = ''" class="text-xs uppercase tracking-widest text-primary-600 underline underline-offset-4 font-semibold mt-4 block mx-auto hover:text-stone-950">
+                        Transmit New Statement
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimalist sophisticated footer including legal disclaimers, structural links -->
+    <footer class="bg-stone-900 text-white py-16 border-t border-stone-850">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+            
+            <!-- Footer Brand & Details -->
+            <div class="md:col-span-4 space-y-6">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-8 h-8 border border-primary-500 flex items-center justify-center rounded-sm">
+                        <span class="font-serif text-sm text-primary-400">A</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-lg tracking-widest uppercase font-semibold text-[#FAF9F5]">Aurelius</span>
+                        <span class="text-[8px] uppercase tracking-[0.25em] text-primary-400 -mt-1">&amp; Partners</span>
+                    </div>
+                </a>
+                <p class="text-stone-400 text-[11px] leading-relaxed max-w-xs">
+                    Elite modern counsel providing responsive cross-border representation across Swiss and Anglo-Saxon legal frameworks.
+                </p>
+                <div class="text-[10px] text-stone-500">
+                    © 2026 Aurelius &amp; Partners Law. All Rights Reserved.
+                </div>
+            </div>
+
+            <!-- Practice Areas Links -->
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="text-[10px] uppercase tracking-widest text-[#FAF9F5] font-semibold border-b border-stone-800 pb-2">Primary Practices</h4>
+                <ul class="space-y-2 text-[11px] text-stone-400">
+                    <li><a href="#expertise" class="hover:text-primary-400 transition-colors">Corporate Architecture &amp; M&amp;A</a></li>
+                    <li><a href="#expertise" class="hover:text-primary-400 transition-colors">Venture Seed &amp; Series Advisory</a></li>
+                    <li><a href="#expertise" class="hover:text-primary-400 transition-colors">Global Trust Structuring &amp; Estates</a></li>
+                    <li><a href="#expertise" class="hover:text-primary-400 transition-colors">IP Licensing &amp; Patent Landscapes</a></li>
+                    <li><a href="#expertise" class="hover:text-primary-400 transition-colors">Regulatory Defense &amp; Appeals</a></li>
+                </ul>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="md:col-span-2 space-y-4">
+                <h4 class="text-[10px] uppercase tracking-widest text-[#FAF9F5] font-semibold border-b border-stone-800 pb-2">Firm</h4>
+                <ul class="space-y-2 text-[11px] text-stone-400">
+                    <li><a href="#philosophy" class="hover:text-primary-400 transition-colors">Our Philosophy</a></li>
+                    <li><a href="#team" class="hover:text-primary-400 transition-colors">The Partners</a></li>
+                    <li><a href="#insights" class="hover:text-primary-400 transition-colors">Publications Index</a></li>
+                    <li><a href="#planner" class="hover:text-primary-400 transition-colors">Confidential Intake</a></li>
+                    <li><a href="#contact" class="hover:text-primary-400 transition-colors">Suite Contact Directory</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal Disclaimers -->
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="text-[10px] uppercase tracking-widest text-[#FAF9F5] font-semibold border-b border-stone-800 pb-2">Attorney Disclaimer</h4>
+                <p class="text-stone-500 text-[10px] leading-relaxed">
+                    The content on this portal does not constitute binding legal advice. Visiting our website or submitting structural parameters via the strategy planner does not configure an active attorney-client relationship. Prior performance results do not guarantee similar outcomes.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

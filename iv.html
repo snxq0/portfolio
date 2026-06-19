@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IV — Premium Lifestyle, Atmosphere & Intentional Living</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        ivory: '#F9F9F7',
+                        clay: '#F4F3EF',
+                        charcoal: '#1A1A1A',
+                        stone: '#70706B',
+                        onyx: '#111111',
+                    },
+                    letterSpacing: {
+                        superwide: '0.25em',
+                        giga: '0.4em',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar matching brand styling */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F9F9F7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1A1A1A;
+        }
+        
+        /* Custom dot cursor on desktop */
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                width: 8px;
+                height: 8px;
+                background-color: #1A1A1A;
+                border-radius: 50%;
+                position: fixed;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9999;
+                transition: width 0.3s, height 0.3s, background-color 0.3s;
+            }
+            .custom-cursor-ring {
+                width: 36px;
+                height: 36px;
+                border: 1px solid rgba(26, 26, 26, 0.15);
+                border-radius: 50%;
+                position: fixed;
+                transform: translate(-50%, -50%);
+                pointer-events: none;
+                z-index: 9998;
+                transition: transform 0.1s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+            }
+            .hover-link:hover ~ .custom-cursor {
+                width: 24px;
+                height: 24px;
+                background-color: rgba(26, 26, 26, 0.05);
+                border: 1px solid #1A1A1A;
+            }
+            .hover-link:hover ~ .custom-cursor-ring {
+                width: 50px;
+                height: 50px;
+                border-color: rgba(26, 26, 26, 0.4);
+            }
+        }
+
+        /* Ambient glowing backgrounds */
+        .ambient-glow-1 {
+            background: radial-gradient(circle, rgba(244,243,239,0.8) 0%, rgba(255,255,255,0) 70%);
+        }
+        .ambient-glow-2 {
+            background: radial-gradient(circle, rgba(230,229,223,0.5) 0%, rgba(255,255,255,0) 80%);
+        }
+
+        /* Hide Scrollbar for carousel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Subtle revealing animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-ivory text-charcoal font-sans antialiased selection:bg-charcoal selection:text-ivory overflow-x-hidden">
+
+    <!-- Custom Cursor (Desktop Only) -->
+    <div id="custom-cursor" class="custom-cursor hidden lg:block"></div>
+    <div id="custom-cursor-ring" class="custom-cursor-ring hidden lg:block"></div>
+
+    <!-- Ambient background glows -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] ambient-glow-1 rounded-full animate-float-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[800px] h-[800px] ambient-glow-2 rounded-full animate-pulse-slow"></div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b border-transparent hover:bg-ivory/90 hover:backdrop-blur-md" id="main-header">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex items-center justify-between">
+            
+            <!-- Left: Minimal brand links -->
+            <nav class="hidden md:flex space-x-8 text-xs uppercase tracking-superwide font-medium">
+                <a href="#collection" class="hover-link hover:text-stone transition-colors duration-300">The Collection</a>
+                <a href="#philosophy" class="hover-link hover:text-stone transition-colors duration-300">Philosophy</a>
+                <a href="#ritual" class="hover-link hover:text-stone transition-colors duration-300">The Ritual</a>
+                <a href="#story" class="hover-link hover:text-stone transition-colors duration-300">Our Story</a>
+            </nav>
+
+            <!-- Center: Distinctly minimalist premium Logo -->
+            <a href="#" class="hover-link flex flex-col items-center">
+                <span class="font-serif text-3xl lg:text-4xl tracking-[0.5em] font-light transform translate-x-[0.25em]">IV</span>
+                <span class="text-[7px] uppercase tracking-[0.6em] font-light mt-1 text-stone">Studio London</span>
+            </a>
+
+            <!-- Right: System utilities (Cart, Wishlist, Overlay menu) -->
+            <div class="flex items-center space-x-6 text-xs uppercase tracking-wider">
+                <button onclick="toggleCart()" class="hover-link relative flex items-center space-x-2 text-stone hover:text-charcoal transition-colors duration-300">
+                    <span class="hidden sm:inline font-light tracking-widest text-[10px]">BAG</span>
+                    <i data-lucide="shopping-bag" class="w-4 h-4 text-charcoal"></i>
+                    <span id="cart-counter" class="absolute -top-1.5 -right-2 bg-charcoal text-white text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
+                </button>
+                
+                <!-- Menu Toggle Button -->
+                <button onclick="toggleMenu()" class="hover-link flex items-center space-x-2 text-charcoal hover:text-stone transition-colors duration-300">
+                    <span class="hidden sm:inline font-light tracking-widest text-[10px]">MENU</span>
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- FULL SCREEN NAVIGATION MENU -->
+    <div id="full-menu" class="fixed inset-0 bg-charcoal text-ivory z-[100] transform translate-y-full transition-transform duration-1000 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col justify-between p-8 lg:p-16">
+        <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+            <span class="font-serif text-3xl tracking-[0.5em] font-light transform translate-x-[0.25em]">IV</span>
+            <button onclick="toggleMenu()" class="hover-link flex items-center space-x-2 text-stone hover:text-white transition-colors duration-300 uppercase tracking-widest text-xs">
+                <span>Close</span>
+                <i data-lucide="x" class="w-5 h-5 text-ivory"></i>
+            </button>
+        </div>
+
+        <div class="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Navigation Links -->
+            <div class="flex flex-col space-y-6 lg:space-y-10">
+                <a href="#collection" onclick="toggleMenu()" class="group flex items-baseline space-x-4">
+                    <span class="font-serif text-stone text-lg group-hover:text-ivory transition-colors">01</span>
+                    <span class="font-serif text-4xl lg:text-7xl font-light hover:translate-x-4 transition-transform duration-500 block">The Collection</span>
+                </a>
+                <a href="#philosophy" onclick="toggleMenu()" class="group flex items-baseline space-x-4">
+                    <span class="font-serif text-stone text-lg group-hover:text-ivory transition-colors">02</span>
+                    <span class="font-serif text-4xl lg:text-7xl font-light hover:translate-x-4 transition-transform duration-500 block">Brand Philosophy</span>
+                </a>
+                <a href="#ritual" onclick="toggleMenu()" class="group flex items-baseline space-x-4">
+                    <span class="font-serif text-stone text-lg group-hover:text-ivory transition-colors">03</span>
+                    <span class="font-serif text-4xl lg:text-7xl font-light hover:translate-x-4 transition-transform duration-500 block">Interactive Ritual</span>
+                </a>
+                <a href="#story" onclick="toggleMenu()" class="group flex items-baseline space-x-4">
+                    <span class="font-serif text-stone text-lg group-hover:text-ivory transition-colors">04</span>
+                    <span class="font-serif text-4xl lg:text-7xl font-light hover:translate-x-4 transition-transform duration-500 block">Our Story</span>
+                </a>
+            </div>
+
+            <!-- Brand Mood Box -->
+            <div class="hidden lg:block border border-stone/30 p-12 space-y-8 max-w-md">
+                <span class="text-xs uppercase tracking-superwide text-stone block">Atmospheric Quote</span>
+                <p class="font-serif text-2xl italic font-light leading-relaxed">
+                    “In stripping away the noise, we allow what remains to finally speak. IV is not merely a brand; it is a space for intentional resonance.”
+                </p>
+                <div class="border-t border-stone/30 pt-4 flex justify-between text-xs text-stone tracking-widest">
+                    <span>IV STUDIO</span>
+                    <span>EST. 2026</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center border-t border-stone/20 pt-8 text-xs text-stone tracking-widest">
+            <div class="flex space-x-8 mb-4 sm:mb-0">
+                <a href="#" class="hover:text-ivory transition-colors">Instagram</a>
+                <a href="#" class="hover:text-ivory transition-colors">Journal</a>
+                <a href="#" class="hover:text-ivory transition-colors">Contact</a>
+            </div>
+            <span>© 2026 IV STUDIO. ALL RIGHTS RESERVED.</span>
+        </div>
+    </div>
+
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-6 overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Content: High luxury message -->
+            <div class="lg:col-span-6 space-y-8 text-left z-20">
+                <div class="inline-flex items-center space-x-3 text-xs tracking-superwide uppercase text-stone mb-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-charcoal"></span>
+                    <span>A T M O S P H E R E   N o . 0 4</span>
+                </div>
+                
+                <h1 class="font-serif text-5xl sm:text-7xl xl:text-8xl font-light tracking-wide leading-[1.1] text-charcoal">
+                    Quiet Luxury. <br>
+                    <span class="italic font-light text-stone">Intentional</span> <br>
+                    Form.
+                </h1>
+
+                <p class="text-stone font-light text-sm sm:text-base max-w-lg leading-relaxed">
+                    Designed for the moments between actions. IV crafts olfactory formulas, spatial objects, and minimalist wear to frame your daily rituals with profound elegance and confidence.
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#collection" class="hover-link group bg-charcoal text-ivory text-xs uppercase tracking-superwide px-8 py-5 text-center hover:bg-stone transition-all duration-300 shadow-md">
+                        Explore Collection 
+                        <span class="inline-block transform group-hover:translate-x-2 transition-transform duration-300 ml-2">→</span>
+                    </a>
+                    <a href="#ritual" class="hover-link border border-charcoal/20 text-charcoal text-xs uppercase tracking-superwide px-8 py-5 text-center hover:bg-charcoal hover:text-ivory transition-all duration-300">
+                        Design Daily Ritual
+                    </a>
+                </div>
+
+                <!-- Live Atmospheric Data Ticker -->
+                <div class="border-t border-charcoal/10 pt-8 grid grid-cols-3 gap-4 text-[10px] uppercase tracking-superwide text-stone">
+                    <div>
+                        <span class="block text-charcoal font-medium">FORMULATION</span>
+                        <span>0% Synthetic</span>
+                    </div>
+                    <div>
+                        <span class="block text-charcoal font-medium">DESIGN PATH</span>
+                        <span>Subtractive</span>
+                    </div>
+                    <div>
+                        <span class="block text-charcoal font-medium">PHILOSOPHY</span>
+                        <span>Atmosphere</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content: Minimalist Floating Sculpture Image & Showcase -->
+            <div class="lg:col-span-6 flex justify-center items-center relative z-10">
+                <!-- Abstract visual framing -->
+                <div class="absolute -inset-4 border border-charcoal/5 pointer-events-none rounded-full"></div>
+                <div class="absolute inset-12 border border-charcoal/10 pointer-events-none rounded-sm"></div>
+
+                <!-- Main atmospheric object render (premium abstract SVG representational piece) -->
+                <div class="relative bg-clay p-8 sm:p-12 shadow-2xl w-full max-w-md aspect-[4/5] flex flex-col justify-between items-center text-center select-none group">
+                    <span class="text-[10px] uppercase tracking-giga text-stone">IV NO.01 / ESCAPE</span>
+                    
+                    <!-- Floating visual representation of a concrete candle/fragrance bottle -->
+                    <div class="relative w-48 h-64 flex items-center justify-center my-8">
+                        <div class="absolute inset-0 bg-charcoal/5 blur-xl rounded-full translate-y-8 scale-90 opacity-40"></div>
+                        <!-- Pure CSS/SVG Architectural Fragrance Bottle -->
+                        <svg class="w-full h-full transition-transform duration-700 group-hover:scale-105" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Bottle Shadow -->
+                            <ellipse cx="100" cy="210" rx="50" ry="8" fill="rgba(0,0,0,0.06)" />
+                            <!-- Bottle Base -->
+                            <path d="M60 70C60 64.4772 64.4772 60 70 60H130C135.523 60 140 64.4772 140 70V200C140 205.523 135.523 210 130 210H70C64.4772 210 60 205.523 60 200V70Z" fill="#EBE9E4" stroke="#1A1A1A" stroke-width="1.5" />
+                            <!-- Cap (Concrete Texture Pattern representation) -->
+                            <rect x="80" y="24" width="40" height="36" rx="2" fill="#1A1A1A" />
+                            <circle cx="100" cy="18" r="4" fill="#1A1A1A" />
+                            <!-- Label -->
+                            <rect x="75" y="105" width="50" height="60" fill="white" stroke="#1A1A1A" stroke-width="0.5" />
+                            <text x="100" y="128" font-family="'Inter', sans-serif" font-size="10" letter-spacing="3" text-anchor="middle" fill="#1A1A1A">IV</text>
+                            <text x="100" y="142" font-family="'Cormorant Garamond', serif" font-size="8" font-style="italic" text-anchor="middle" fill="#70706B">N°01</text>
+                            <text x="100" y="153" font-family="'Inter', sans-serif" font-size="5" letter-spacing="1" text-anchor="middle" fill="#1A1A1A">SOLITUDE</text>
+                            <!-- Elegant Liquid Stem inside -->
+                            <line x1="100" y1="60" x2="100" y2="105" stroke="#1A1A1A" stroke-width="1" />
+                        </svg>
+                    </div>
+
+                    <div class="space-y-1">
+                        <span class="font-serif text-xl font-light text-charcoal">Subtractive Sandalwood & Cedar</span>
+                        <p class="text-[9px] uppercase tracking-widest text-stone">Fragrance Concrete Vessel</p>
+                    </div>
+                </div>
+
+                <!-- Abstract side pill tag -->
+                <div class="absolute right-0 bottom-4 bg-charcoal text-ivory px-4 py-3 text-[9px] uppercase tracking-superwide hidden md:block">
+                    Limited Edition 01/50
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 pointer-events-none opacity-60">
+            <span class="text-[9px] uppercase tracking-[0.3em] font-light">Scroll To Experience</span>
+            <div class="w-[1px] h-12 bg-charcoal/30 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1/2 bg-charcoal animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PHILOSOPHY SECTION -->
+    <section id="philosophy" class="relative py-24 lg:py-40 bg-clay border-y border-charcoal/5 z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <div class="reveal grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+                <div class="lg:col-span-4">
+                    <span class="text-xs uppercase tracking-superwide text-stone block mb-4">THE PRINCIPLE</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-light text-charcoal">“Space is not empty, it is waiting.”</h2>
+                </div>
+                <div class="lg:col-span-8 lg:pl-12">
+                    <p class="font-serif text-xl sm:text-2xl text-stone font-light leading-relaxed mb-8">
+                        Our intent is not to fill your life with noise, but to highlight the spaces in between. IV objects are stripped of ornamentation, revealing the raw beauty of hand-poured concrete, cold brass, wild cotton, and unrefined botanical oils.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
+                        <div class="space-y-2">
+                            <h4 class="font-medium text-charcoal tracking-wide uppercase text-xs">I. SUBTRACTIVE DEVELOPMENT</h4>
+                            <p class="text-stone font-light leading-relaxed">We strip away formulation chemicals, noisy packaging details, and fleeting trends. What remains is pristine intentionality.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-medium text-charcoal tracking-wide uppercase text-xs">II. ATMOSPHERIC COHERENCE</h4>
+                            <p class="text-stone font-light leading-relaxed">Every fragrance, apparel piece, and vessel we create integrates into a single system of atmospheric luxury designed for deep relaxation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Philosophy Interactive Slider Showcase -->
+            <div class="reveal relative mt-16">
+                <div class="flex overflow-x-auto no-scrollbar space-x-6 pb-8 snap-x snap-mandatory">
+                    <!-- Philosophy Card 1 -->
+                    <div class="min-w-[300px] sm:min-w-[400px] bg-ivory p-8 border border-charcoal/5 snap-start hover:border-charcoal/40 transition-colors duration-500 flex flex-col justify-between h-[350px]">
+                        <div>
+                            <span class="font-serif text-3xl italic text-stone">01</span>
+                            <h3 class="font-serif text-2xl text-charcoal mt-4 mb-2">Intentional Fragrance</h3>
+                            <p class="text-stone font-light text-sm leading-relaxed">Bottled memories of quiet forests, concrete monasteries, and rain hitting basalt. Formulated to lower sensory stimulation.</p>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-stone">THE SENSES — SERIES I</span>
+                    </div>
+
+                    <!-- Philosophy Card 2 -->
+                    <div class="min-w-[300px] sm:min-w-[400px] bg-ivory p-8 border border-charcoal/5 snap-start hover:border-charcoal/40 transition-colors duration-500 flex flex-col justify-between h-[350px]">
+                        <div>
+                            <span class="font-serif text-3xl italic text-stone">02</span>
+                            <h3 class="font-serif text-2xl text-charcoal mt-4 mb-2">Structured Attire</h3>
+                            <p class="text-stone font-light text-sm leading-relaxed">Sartorial expressions built on comfort, weight, and sculptural presence. Crafted exclusively with organic natural fibres.</p>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-stone">THE APPAREL — SERIES I</span>
+                    </div>
+
+                    <!-- Philosophy Card 3 -->
+                    <div class="min-w-[300px] sm:min-w-[400px] bg-ivory p-8 border border-charcoal/5 snap-start hover:border-charcoal/40 transition-colors duration-500 flex flex-col justify-between h-[350px]">
+                        <div>
+                            <span class="font-serif text-3xl italic text-stone">03</span>
+                            <h3 class="font-serif text-2xl text-charcoal mt-4 mb-2">Spatial Architecture</h3>
+                            <p class="text-stone font-light text-sm leading-relaxed">Handmade items created in collaboration with micro-sculptors around the world. Designed to catch light and quiet shadows.</p>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest text-stone">THE OBJECTS — SERIES I</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- PRODUCT COLLECTION SECTION -->
+    <section id="collection" class="relative py-24 lg:py-40 z-10 bg-ivory">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs uppercase tracking-superwide text-stone block mb-4">THE HARMONY SERIES</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-light text-charcoal">The Core Elements</h2>
+                </div>
+                <div class="mt-4 md:mt-0 flex space-x-6 text-xs uppercase tracking-widest">
+                    <button onclick="filterProducts('all')" class="category-btn border-b border-charcoal font-semibold text-charcoal transition-all">All</button>
+                    <button onclick="filterProducts('scent')" class="category-btn border-b border-transparent text-stone hover:text-charcoal transition-all">Scent</button>
+                    <button onclick="filterProducts('object')" class="category-btn border-b border-transparent text-stone hover:text-charcoal transition-all">Objects</button>
+                    <button onclick="filterProducts('apparel')" class="category-btn border-b border-transparent text-stone hover:text-charcoal transition-all">Apparel</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                
+                <!-- Product 1: SOLITUDE Perfume -->
+                <div class="product-card reveal bg-clay/50 border border-charcoal/5 p-6 flex flex-col justify-between relative group hover:shadow-lg transition-all duration-500" data-category="scent">
+                    <div class="absolute top-4 right-4 bg-charcoal text-white text-[9px] uppercase tracking-widest px-2.5 py-1">Best Seller</div>
+                    <div class="w-full aspect-square flex items-center justify-center p-8 bg-clay rounded-xs mb-8 overflow-hidden">
+                        <!-- Premium Minimal SVG illustration of candle -->
+                        <svg class="w-40 h-40 transform group-hover:scale-105 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="35" y="25" width="30" height="55" rx="2" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1" />
+                            <rect x="42" y="10" width="16" height="15" fill="#1A1A1A" />
+                            <rect x="40" y="45" width="20" height="25" fill="#F4F3EF" stroke="#1A1A1A" stroke-width="0.5" />
+                            <text x="50" y="58" font-family="'Inter'" font-size="5" text-anchor="middle" letter-spacing="1" fill="#1A1A1A">IV N°01</text>
+                            <text x="50" y="65" font-family="'Cormorant Garamond'" font-size="4" font-style="italic" text-anchor="middle" fill="#70706B">Solitude</text>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h3 class="font-serif text-2xl font-light text-charcoal">N°01 SOLITUDE Eau De Parfum</h3>
+                            <span class="text-sm font-light text-stone">€145</span>
+                        </div>
+                        <p class="text-stone text-xs font-light">Sandalwood, rich amber, slate oil, and cedarwood accord.</p>
+                        
+                        <!-- Premium Interactive Buttons -->
+                        <div class="pt-4 flex space-x-2">
+                            <button onclick="addToCart('N°01 SOLITUDE Parfum', 145)" class="flex-1 bg-charcoal text-ivory text-[10px] uppercase tracking-widest py-3 hover:bg-stone transition-all">Add to Bag</button>
+                            <button onclick="openProductDetail('solitude')" class="border border-charcoal/10 px-4 py-3 hover:bg-charcoal hover:text-white transition-all"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Concrete Incense Vessel -->
+                <div class="product-card reveal bg-clay/50 border border-charcoal/5 p-6 flex flex-col justify-between relative group hover:shadow-lg transition-all duration-500" data-category="object">
+                    <div class="w-full aspect-square flex items-center justify-center p-8 bg-clay rounded-xs mb-8 overflow-hidden">
+                        <!-- Premium Minimal SVG illustration of Vessel -->
+                        <svg class="w-40 h-40 transform group-hover:scale-105 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="50" cy="80" rx="35" ry="8" fill="rgba(0,0,0,0.1)" />
+                            <path d="M15 50 C 15 20, 85 20, 85 50 C 85 75, 15 75, 15 50" fill="#E2DFD8" stroke="#1A1A1A" stroke-width="1" />
+                            <ellipse cx="50" cy="50" rx="30" ry="12" fill="#1A1A1A" />
+                            <circle cx="50" cy="50" r="3" fill="#FFFFFF" />
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h3 class="font-serif text-2xl font-light text-charcoal">Subtractive Incense Vessel</h3>
+                            <span class="text-sm font-light text-stone">€95</span>
+                        </div>
+                        <p class="text-stone text-xs font-light">Raw brutalist hand-cast concrete tray with aged brass incense holder.</p>
+                        
+                        <!-- Premium Interactive Buttons -->
+                        <div class="pt-4 flex space-x-2">
+                            <button onclick="addToCart('Subtractive Incense Vessel', 95)" class="flex-1 bg-charcoal text-ivory text-[10px] uppercase tracking-widest py-3 hover:bg-stone transition-all">Add to Bag</button>
+                            <button onclick="openProductDetail('vessel')" class="border border-charcoal/10 px-4 py-3 hover:bg-charcoal hover:text-white transition-all"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Linen Loungewear Shirt -->
+                <div class="product-card reveal bg-clay/50 border border-charcoal/5 p-6 flex flex-col justify-between relative group hover:shadow-lg transition-all duration-500" data-category="apparel">
+                    <div class="w-full aspect-square flex items-center justify-center p-8 bg-clay rounded-xs mb-8 overflow-hidden">
+                        <!-- Premium Minimal SVG illustration of Linen Shirt -->
+                        <svg class="w-40 h-40 transform group-hover:scale-105 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 25 L 30 20 L 50 30 L 70 20 L 85 25 L 80 55 L 75 55 L 75 90 L 25 90 L 25 55 L 20 55 Z" fill="#FBFBFA" stroke="#1A1A1A" stroke-width="1" />
+                            <line x1="50" y1="30" x2="50" y2="90" stroke="#1A1A1A" stroke-width="0.75" />
+                            <circle cx="50" cy="45" r="1.5" fill="#1A1A1A" />
+                            <circle cx="50" cy="60" r="1.5" fill="#1A1A1A" />
+                            <circle cx="50" cy="75" r="1.5" fill="#1A1A1A" />
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h3 class="font-serif text-2xl font-light text-charcoal">Lounge Kimono Shacket</h3>
+                            <span class="text-sm font-light text-stone">€190</span>
+                        </div>
+                        <p class="text-stone text-xs font-light">Structured organic raw Belgian linen tailored for atmospheric comfort.</p>
+                        
+                        <!-- Premium Interactive Buttons -->
+                        <div class="pt-4 flex space-x-2">
+                            <button onclick="addToCart('Lounge Kimono Shacket', 190)" class="flex-1 bg-charcoal text-ivory text-[10px] uppercase tracking-widest py-3 hover:bg-stone transition-all">Add to Bag</button>
+                            <button onclick="openProductDetail('apparel')" class="border border-charcoal/10 px-4 py-3 hover:bg-charcoal hover:text-white transition-all"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: SANCTUARY Fragrance Mist -->
+                <div class="product-card reveal bg-clay/50 border border-charcoal/5 p-6 flex flex-col justify-between relative group hover:shadow-lg transition-all duration-500" data-category="scent">
+                    <div class="w-full aspect-square flex items-center justify-center p-8 bg-clay rounded-xs mb-8 overflow-hidden">
+                        <!-- Premium Minimal SVG illustration of Mist Bottle -->
+                        <svg class="w-40 h-40 transform group-hover:scale-105 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="38" y="20" width="24" height="65" rx="12" fill="#E2DFD8" stroke="#1A1A1A" stroke-width="1" />
+                            <rect x="46" y="8" width="8" height="12" fill="#1A1A1A" />
+                            <circle cx="50" cy="40" r="10" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="0.5" />
+                            <text x="50" y="43" font-family="'Inter'" font-size="6" text-anchor="middle" letter-spacing="0.5" fill="#1A1A1A">IV</text>
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h3 class="font-serif text-2xl font-light text-charcoal">N°02 SANCTUARY Atmosphere Mist</h3>
+                            <span class="text-sm font-light text-stone">€80</span>
+                        </div>
+                        <p class="text-stone text-xs font-light">Calming botanical formulation of wild lavender, sage, and vetiver roots.</p>
+                        
+                        <!-- Premium Interactive Buttons -->
+                        <div class="pt-4 flex space-x-2">
+                            <button onclick="addToCart('N°02 SANCTUARY Mist', 80)" class="flex-1 bg-charcoal text-ivory text-[10px] uppercase tracking-widest py-3 hover:bg-stone transition-all">Add to Bag</button>
+                            <button onclick="openProductDetail('sanctuary')" class="border border-charcoal/10 px-4 py-3 hover:bg-charcoal hover:text-white transition-all"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Sculpted Brass Snuffer -->
+                <div class="product-card reveal bg-clay/50 border border-charcoal/5 p-6 flex flex-col justify-between relative group hover:shadow-lg transition-all duration-500" data-category="object">
+                    <div class="w-full aspect-square flex items-center justify-center p-8 bg-clay rounded-xs mb-8 overflow-hidden">
+                        <!-- Premium Minimal SVG illustration -->
+                        <svg class="w-40 h-40 transform group-hover:scale-105 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="20" y1="60" x2="65" y2="40" stroke="#1A1A1A" stroke-width="2" />
+                            <path d="M60 30 L 80 40 L 65 55 Z" fill="#EAD08B" stroke="#1A1A1A" stroke-width="1" />
+                            <circle cx="65" cy="40" r="3" fill="#1A1A1A" />
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h3 class="font-serif text-2xl font-light text-charcoal">Architectural Brass Candle Snuffer</h3>
+                            <span class="text-sm font-light text-stone">€65</span>
+                        </div>
+                        <p class="text-stone text-xs font-light">Cast solid unpolished brass. Develops a gorgeous vintage patina over time.</p>
+                        
+                        <!-- Premium Interactive Buttons -->
+                        <div class="pt-4 flex space-x-2">
+                            <button onclick="addToCart('Architectural Brass Snuffer', 65)" class="flex-1 bg-charcoal text-ivory text-[10px] uppercase tracking-widest py-3 hover:bg-stone transition-all">Add to Bag</button>
+                            <button onclick="openProductDetail('snuffer')" class="border border-charcoal/10 px-4 py-3 hover:bg-charcoal hover:text-white transition-all"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Raw Linen Lounge Trouser -->
+                <div class="product-card reveal bg-clay/50 border border-charcoal/5 p-6 flex flex-col justify-between relative group hover:shadow-lg transition-all duration-500" data-category="apparel">
+                    <div class="w-full aspect-square flex items-center justify-center p-8 bg-clay rounded-xs mb-8 overflow-hidden">
+                        <!-- Premium Minimal SVG illustration -->
+                        <svg class="w-40 h-40 transform group-hover:scale-105 transition-transform duration-700" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 15 H 70 V 85 L 53 85 L 53 45 L 47 45 L 47 85 L 30 85 Z" fill="#F4F3EF" stroke="#1A1A1A" stroke-width="1" />
+                            <line x1="30" y1="25" x2="70" y2="25" stroke="#1A1A1A" stroke-width="1" />
+                        </svg>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-baseline">
+                            <h3 class="font-serif text-2xl font-light text-charcoal">Raw Linen Drawstring Trouser</h3>
+                            <span class="text-sm font-light text-stone">€160</span>
+                        </div>
+                        <p class="text-stone text-xs font-light">Relaxed silhouette trousers made with un-dyed pure organic flax linen.</p>
+                        
+                        <!-- Premium Interactive Buttons -->
+                        <div class="pt-4 flex space-x-2">
+                            <button onclick="addToCart('Raw Linen Lounge Trouser', 160)" class="flex-1 bg-charcoal text-ivory text-[10px] uppercase tracking-widest py-3 hover:bg-stone transition-all">Add to Bag</button>
+                            <button onclick="openProductDetail('trouser')" class="border border-charcoal/10 px-4 py-3 hover:bg-charcoal hover:text-white transition-all"><i data-lucide="info" class="w-3.5 h-3.5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- INTERACTIVE EXPERIENCE: DAILY RITUAL BUILDER -->
+    <section id="ritual" class="relative py-24 lg:py-40 bg-charcoal text-ivory z-10 overflow-hidden">
+        
+        <!-- Elegant Background Abstract Grid Lines -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="w-full h-full grid grid-cols-6 grid-rows-6">
+                <div class="border border-ivory"></div><div class="border border-ivory"></div><div class="border border-ivory"></div>
+                <div class="border border-ivory"></div><div class="border border-ivory"></div><div class="border border-ivory"></div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="reveal max-w-2xl mb-16">
+                <span class="text-xs uppercase tracking-superwide text-stone block mb-4">THE RITUAL BUILDER</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-light">Structure Your Quiet Moments</h2>
+                <p class="text-stone font-light text-sm mt-4 leading-relaxed">
+                    True luxury lies in structural intention. Build your personalized atmospheric daily ritual card below by choosing your custom ingredients for an elevated state of presence.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Left: Interactive Choices -->
+                <div class="lg:col-span-7 space-y-10">
+                    
+                    <!-- Step 1: Time of Day -->
+                    <div class="space-y-4">
+                        <label class="text-[11px] uppercase tracking-giga text-stone block">01 / Choose Your Time Range</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="selectRitualOption('time', 'Dawn (06:00)', '01')" class="ritual-btn-time hover-link border border-stone/30 hover:border-ivory px-4 py-4 text-center transition-all bg-stone/5" id="btn-time-01">
+                                <span class="block font-serif text-lg">Dawn</span>
+                                <span class="text-[9px] uppercase tracking-widest text-stone">06:00</span>
+                            </button>
+                            <button onclick="selectRitualOption('time', 'Dusk (18:00)', '02')" class="ritual-btn-time hover-link border border-stone/30 hover:border-ivory px-4 py-4 text-center transition-all bg-stone/5" id="btn-time-02">
+                                <span class="block font-serif text-lg">Dusk</span>
+                                <span class="text-[9px] uppercase tracking-widest text-stone">18:00</span>
+                            </button>
+                            <button onclick="selectRitualOption('time', 'Midnight (24:00)', '03')" class="ritual-btn-time hover-link border border-stone/30 hover:border-ivory px-4 py-4 text-center transition-all bg-stone/5" id="btn-time-03">
+                                <span class="block font-serif text-lg">Midnight</span>
+                                <span class="text-[9px] uppercase tracking-widest text-stone">00:00</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Atmospheric Fragrance -->
+                    <div class="space-y-4">
+                        <label class="text-[11px] uppercase tracking-giga text-stone block">02 / Choose Your Fragrance Presence</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button onclick="selectRitualOption('scent', 'Sandalwood & Slate', '01')" class="ritual-btn-scent hover-link border border-stone/30 hover:border-ivory p-4 text-left transition-all bg-stone/5" id="btn-scent-01">
+                                <span class="block font-serif text-base">Solitude N°01</span>
+                                <span class="text-[8px] uppercase tracking-widest text-stone">Warm & Brutalist</span>
+                            </button>
+                            <button onclick="selectRitualOption('scent', 'Lavender & Sage Mist', '02')" class="ritual-btn-scent hover-link border border-stone/30 hover:border-ivory p-4 text-left transition-all bg-stone/5" id="btn-scent-02">
+                                <span class="block font-serif text-base">Sanctuary N°02</span>
+                                <span class="text-[8px] uppercase tracking-widest text-stone">Fresh & Restorative</span>
+                            </button>
+                            <button onclick="selectRitualOption('scent', 'Smoked Vetiver & Birch', '03')" class="ritual-btn-scent hover-link border border-stone/30 hover:border-ivory p-4 text-left transition-all bg-stone/5" id="btn-scent-03">
+                                <span class="block font-serif text-base">Hearth N°03</span>
+                                <span class="text-[8px] uppercase tracking-widest text-stone">Smoky & Deep</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Minimal Soundscape -->
+                    <div class="space-y-4">
+                        <label class="text-[11px] uppercase tracking-giga text-stone block">03 / Choose Your Audio Waveform</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button onclick="selectRitualOption('sound', 'Muted Rainfall', '01')" class="ritual-btn-sound hover-link border border-stone/30 hover:border-ivory p-4 text-left transition-all bg-stone/5" id="btn-sound-01">
+                                <span class="block font-serif text-base">Muted Rain</span>
+                                <span class="text-[8px] uppercase tracking-widest text-stone">White Noise</span>
+                            </button>
+                            <button onclick="selectRitualOption('sound', 'Analog Synthesizer Drone', '02')" class="ritual-btn-sound hover-link border border-stone/30 hover:border-ivory p-4 text-left transition-all bg-stone/5" id="btn-sound-02">
+                                <span class="block font-serif text-base">Basalt Drone</span>
+                                <span class="text-[8px] uppercase tracking-widest text-stone">Binaural 432Hz</span>
+                            </button>
+                            <button onclick="selectRitualOption('sound', 'Complete Absolute Silence', '03')" class="ritual-btn-sound hover-link border border-stone/30 hover:border-ivory p-4 text-left transition-all bg-stone/5" id="btn-sound-03">
+                                <span class="block font-serif text-base">Silence</span>
+                                <span class="text-[8px] uppercase tracking-widest text-stone">Subtractive Void</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Spatial Focus Object -->
+                    <div class="space-y-4">
+                        <label class="text-[11px] uppercase tracking-giga text-stone block">04 / Select Your Focus Centerpiece</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="selectRitualOption('focus', 'Concrete Vessel', '01')" class="ritual-btn-focus hover-link border border-stone/30 hover:border-ivory px-4 py-4 text-center transition-all bg-stone/5" id="btn-focus-01">
+                                <span class="block font-serif text-base">The Vessel</span>
+                            </button>
+                            <button onclick="selectRitualOption('focus', 'Aged Snuffer', '02')" class="ritual-btn-focus hover-link border border-stone/30 hover:border-ivory px-4 py-4 text-center transition-all bg-stone/5" id="btn-focus-02">
+                                <span class="block font-serif text-base">The Brass</span>
+                            </button>
+                            <button onclick="selectRitualOption('focus', 'Minimal Flax Robe', '03')" class="ritual-btn-focus hover-link border border-stone/30 hover:border-ivory px-4 py-4 text-center transition-all bg-stone/5" id="btn-focus-03">
+                                <span class="block font-serif text-base">The Linen</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Card Preview and Custom Generated Card -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="w-full max-w-sm bg-ivory text-charcoal p-8 shadow-2xl relative flex flex-col justify-between aspect-[3/4.5] border border-charcoal/20" id="ritual-card-print">
+                        
+                        <!-- Top details -->
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="font-serif text-3xl tracking-[0.3em] font-light">I V</span>
+                                <span class="block text-[8px] uppercase tracking-widest text-stone mt-1">RITUAL CARD — PRESET</span>
+                            </div>
+                            <span class="text-[8px] uppercase tracking-widest text-stone text-right">No. <span id="card-ritual-num">01-01-01</span></span>
+                        </div>
+
+                        <!-- Card Central Abstract Art (Dynamically changes with selections) -->
+                        <div class="my-6 border-y border-charcoal/10 py-6 flex flex-col items-center justify-center text-center">
+                            <div class="w-16 h-16 rounded-full border border-charcoal flex items-center justify-center mb-4 transition-transform duration-500" id="card-art-container">
+                                <div class="w-8 h-8 rounded-full bg-charcoal/10" id="card-art-inner"></div>
+                            </div>
+                            <span class="text-[9px] uppercase tracking-[0.3em] text-stone">Focus Form State</span>
+                        </div>
+
+                        <!-- Configured Outputs -->
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-[8px] text-stone uppercase tracking-widest block">TIME INDEX</span>
+                                <span class="font-serif text-xl italic" id="card-time-val">Dawn (06:00)</span>
+                            </div>
+                            <div>
+                                <span class="text-[8px] text-stone uppercase tracking-widest block">ATMOSPHERIC FORMULATION</span>
+                                <span class="font-serif text-xl italic" id="card-scent-val">Sandalwood & Slate</span>
+                            </div>
+                            <div>
+                                <span class="text-[8px] text-stone uppercase tracking-widest block">SOUND VIBRATION</span>
+                                <span class="font-serif text-xl italic" id="card-sound-val">Muted Rainfall</span>
+                            </div>
+                            <div>
+                                <span class="text-[8px] text-stone uppercase tracking-widest block">PHYSICAL MANIFESTATION</span>
+                                <span class="font-serif text-xl italic" id="card-focus-val">Concrete Vessel</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer elements -->
+                        <div class="border-t border-charcoal/10 pt-4 mt-4 flex justify-between items-center text-[8px] text-stone tracking-widest">
+                            <span>IV ARCHITECTURAL DESIGN</span>
+                            <span>BREATHE INTENTIONALLY</span>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="w-full max-w-sm mt-6 flex space-x-3">
+                        <button onclick="shareRitual()" class="flex-1 bg-white hover:bg-stone text-charcoal hover:text-white border border-white/20 text-xs uppercase tracking-widest py-4 transition-all text-center">
+                            Copy Settings URL
+                        </button>
+                        <button onclick="saveRitualCard()" class="flex-1 bg-stone text-white hover:bg-ivory hover:text-charcoal text-xs uppercase tracking-widest py-4 transition-all text-center">
+                            Print Blueprint
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- EDITORIAL BRAND STORY -->
+    <section id="story" class="relative py-24 lg:py-40 bg-clay z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <!-- Left Column: Striking Editorial Collage Style Graphics using beautiful Minimal SVG structures -->
+                <div class="lg:col-span-6 relative">
+                    <div class="absolute -inset-8 border border-charcoal/5 rounded-full pointer-events-none"></div>
+                    <div class="bg-ivory border border-charcoal/10 p-12 aspect-[4/5] flex flex-col justify-between items-center relative shadow-xl">
+                        
+                        <div class="w-full flex justify-between text-[9px] uppercase tracking-widest text-stone">
+                            <span>MUSEUM OF FORM</span>
+                            <span>EDITION NO. IV</span>
+                        </div>
+
+                        <!-- Dynamic Abstract Wireframe Geometry representing minimalist sculpture -->
+                        <svg class="w-64 h-64 animate-float-slow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="80" stroke="#1A1A1A" stroke-width="0.5" stroke-dasharray="2,2" />
+                            <ellipse cx="100" cy="100" rx="40" ry="80" stroke="#1A1A1A" stroke-width="1" />
+                            <ellipse cx="100" cy="100" rx="80" ry="40" stroke="#1A1A1A" stroke-width="1" />
+                            <line x1="100" y1="20" x2="100" y2="180" stroke="#1A1A1A" stroke-width="0.5" />
+                            <line x1="20" y1="100" x2="180" y2="100" stroke="#1A1A1A" stroke-width="0.5" />
+                        </svg>
+
+                        <div class="text-center space-y-1">
+                            <p class="font-serif text-2xl font-light text-charcoal">The Spatial Equilibrium</p>
+                            <span class="text-[9px] uppercase tracking-superwide text-stone">Continuous Balancing of Senses</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Poetic Narratives -->
+                <div class="lg:col-span-6 space-y-8 lg:pl-12">
+                    <span class="text-xs uppercase tracking-superwide text-stone block">THE NARRATIVE</span>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-light text-charcoal leading-tight">Born in the margins, built for eternity.</h2>
+                    
+                    <p class="text-stone font-light text-sm sm:text-base leading-relaxed">
+                        IV was founded as a design counter-response to contemporary noise. We found ourselves constantly searching for products that did not scream for attention, but rather offered a quiet harbor of sensory relief.
+                    </p>
+
+                    <p class="text-stone font-light text-sm sm:text-base leading-relaxed">
+                        Every material we source is selected with heavy ethical parameters and physical resonance. Our linen is grown in sustainable fields across Belgium; our concrete is mixed, cast, and sealed by hand in our studio; and our botanical raw ingredients are sourced directly from certified organic family farms.
+                    </p>
+
+                    <blockquote class="border-l border-charcoal pl-6 my-6">
+                        <p class="font-serif italic text-xl text-charcoal leading-relaxed">
+                            “There is a specific joy in deliberate restraint. In knowing exactly when to stop designing.”
+                        </p>
+                        <span class="text-[10px] uppercase tracking-widest text-stone block mt-2">— IV Design Director</span>
+                    </blockquote>
+
+                    <!-- Micro-Interactive timeline statistics -->
+                    <div class="pt-8 border-t border-charcoal/10 grid grid-cols-2 gap-6">
+                        <div>
+                            <span class="font-serif text-3xl font-light text-charcoal block">2026</span>
+                            <span class="text-[9px] uppercase tracking-widest text-stone">STUDIO FOUNDED IN LONDON</span>
+                        </div>
+                        <div>
+                            <span class="font-serif text-3xl font-light text-charcoal block">100%</span>
+                            <span class="text-[9px] uppercase tracking-widest text-stone">TRACEABLE NATURAL RAW INGREDIENTS</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SLIDE-OUT CART / BAG DRAWER -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full sm:max-w-md bg-ivory text-charcoal shadow-2xl z-[150] transform translate-x-full transition-transform duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col justify-between border-l border-charcoal/10">
+        <!-- Cart Header -->
+        <div class="p-6 lg:p-8 border-b border-charcoal/10 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                <h3 class="text-xs uppercase tracking-superwide font-medium">Your Shopping Bag</h3>
+            </div>
+            <button onclick="toggleCart()" class="hover-link text-stone hover:text-charcoal transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items Area (Dynamic) -->
+        <div class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-6" id="cart-items-container">
+            <!-- Empty state template -->
+            <div id="cart-empty-state" class="h-full flex flex-col justify-center items-center text-center space-y-4">
+                <div class="w-12 h-12 rounded-full border border-charcoal/10 flex items-center justify-center text-stone">
+                    <i data-lucide="inbox" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-lg text-charcoal block">Your bag is currently empty</span>
+                    <span class="text-[10px] uppercase tracking-widest text-stone">Add objects to define your atmosphere.</span>
+                </div>
+            </div>
+            <!-- Dynamic items get injected here -->
+        </div>
+
+        <!-- Cart Footer / Totals -->
+        <div class="p-6 lg:p-8 bg-clay border-t border-charcoal/10 space-y-4">
+            <div class="flex justify-between text-xs uppercase tracking-widest">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">€0</span>
+            </div>
+            <div class="flex justify-between text-[10px] text-stone uppercase tracking-widest">
+                <span>Shipping & Taxes</span>
+                <span>Calculated at checkout</span>
+            </div>
+            
+            <button onclick="triggerCheckout()" class="hover-link w-full bg-charcoal text-white text-xs uppercase tracking-superwide py-4 hover:bg-stone transition-all text-center block mt-4">
+                Proceed to Checkout
+            </button>
+            <button onclick="toggleCart()" class="w-full text-center text-[10px] uppercase tracking-widest text-stone hover:text-charcoal mt-2 transition-colors">
+                Continue Exploring
+            </button>
+        </div>
+    </div>
+
+
+    <!-- PRODUCT DETAIL POPUP MODAL -->
+    <div id="product-modal" class="fixed inset-0 bg-charcoal/60 backdrop-blur-xs z-[200] hidden items-center justify-center p-4">
+        <div class="bg-ivory text-charcoal max-w-2xl w-full p-8 relative flex flex-col md:flex-row gap-8 border border-charcoal/20">
+            
+            <button onclick="closeProductDetail()" class="absolute top-4 right-4 text-stone hover:text-charcoal transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Left: Product Preview Rendering -->
+            <div class="w-full md:w-1/2 bg-clay flex items-center justify-center p-6" id="modal-product-img">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Modal Right: Specs -->
+            <div class="w-full md:w-1/2 flex flex-col justify-between space-y-6">
+                <div>
+                    <span class="text-[8px] uppercase tracking-widest text-stone block" id="modal-product-tag">Category</span>
+                    <h3 class="font-serif text-3xl font-light text-charcoal mt-1" id="modal-product-name">Product Name</h3>
+                    <p class="font-serif text-xl text-stone mt-2" id="modal-product-price">€0</p>
+                    
+                    <div class="border-t border-charcoal/10 pt-4 mt-4 space-y-2">
+                        <span class="text-[9px] uppercase tracking-widest text-charcoal block font-medium">Composition</span>
+                        <p class="text-stone text-xs font-light leading-relaxed" id="modal-product-desc">
+                            Description of structural integrity.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <button onclick="addModalProductToCart()" class="w-full bg-charcoal text-white text-xs uppercase tracking-widest py-4 hover:bg-stone transition-all">
+                        Add to Bag
+                    </button>
+                    <span class="block text-center text-[8px] tracking-widest text-stone uppercase">Certified Carbon Neutral Shipping</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-onyx text-ivory pt-24 pb-12 relative z-10 border-t border-stone/20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-stone/15">
+                
+                <!-- Brand Mission Statement -->
+                <div class="lg:col-span-4 space-y-6">
+                    <span class="font-serif text-3xl tracking-[0.5em] block">IV</span>
+                    <p class="text-stone font-light text-xs max-w-xs leading-relaxed">
+                        An exploration of subtractive architecture, atmosphere and olfactory art. Redefining modern luxury through absolute rest.
+                    </p>
+                    <!-- Newsletter Signup -->
+                    <div class="space-y-3">
+                        <span class="text-[9px] uppercase tracking-giga text-stone block">Join The Quiet Circle</span>
+                        <div class="flex border-b border-stone/30 pb-2">
+                            <input type="email" placeholder="YOUR EMAIL" class="bg-transparent border-none text-xs focus:outline-none w-full uppercase tracking-widest placeholder:text-stone text-white">
+                            <button class="text-stone hover:text-white transition-colors"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="text-[10px] uppercase tracking-widest font-semibold text-stone">The Studio</h4>
+                    <ul class="space-y-2 text-xs text-stone font-light">
+                        <li><a href="#collection" class="hover:text-white transition-colors">The Collection</a></li>
+                        <li><a href="#story" class="hover:text-white transition-colors">Our Ethos</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Collaborations</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Journal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Logistics/Help -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="text-[10px] uppercase tracking-widest font-semibold text-stone">Logistics</h4>
+                    <ul class="space-y-2 text-xs text-stone font-light">
+                        <li><a href="#" class="hover:text-white transition-colors">Carbon Neutral Shipping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Return System</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability Audit</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Corporate Gifting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact/Address -->
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 class="text-[10px] uppercase tracking-widest font-semibold text-stone">London Atelier</h4>
+                    <p class="text-stone font-light text-xs leading-relaxed">
+                        14 Bruton Place, Mayfair, London, W1J 6LY<br>
+                        Private viewings by digital reservation only.
+                    </p>
+                    <div class="pt-2 text-xs text-stone">
+                        <span>TEL: +44 20 7946 0912</span><br>
+                        <span>EMAIL: atelier@iv-studio.com</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sub-Footer Area -->
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-[9px] text-stone tracking-superwide uppercase">
+                <div class="flex space-x-6 mb-4 sm:mb-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                    <a href="#" class="hover:text-white transition-colors">Bespoke Inquiries</a>
+                </div>
+                <span>© 2026 IV STUDIO LONDON LTD. ALL RIGHTS RESERVED.</span>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- AUDIO SOUND EFFECTS FOR RITUAL ATMOSPHERE GENERATOR (using Pure Web Audio API) -->
+    <script>
+        // Extremely smooth and sophisticated low-frequency synthesizer ambient hum or rain generator
+        let audioContext;
+        let ambientOscillator;
+        let ambientGainNode;
+        let rainNoiseNode;
+
+        function initAmbientAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playHumDrone() {
+            initAmbientAudio();
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            
+            // Stop existing before launching
+            stopAmbientAudio();
+
+            // Create low-frequency carrier drone (432Hz base, offset)
+            ambientOscillator = audioContext.createOscillator();
+            ambientOscillator.type = 'sine';
+            ambientOscillator.frequency.setValueAtTime(108, audioContext.currentTime); // Deep warm sub hum
+
+            ambientGainNode = audioContext.createGain();
+            ambientGainNode.gain.setValueAtTime(0.08, audioContext.currentTime); // Muted volume
+
+            ambientOscillator.connect(ambientGainNode);
+            ambientGainNode.connect(audioContext.destination);
+            ambientOscillator.start();
+        }
+
+        function playRainSound() {
+            initAmbientAudio();
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            stopAmbientAudio();
+
+            // Generate customized white noise for rainfall effect
+            const bufferSize = 2 * audioContext.sampleRate;
+            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+
+            const whiteNoise = audioContext.createBufferSource();
+            whiteNoise.buffer = noiseBuffer;
+            whiteNoise.loop = true;
+
+            // Soft lowpass filter to simulate rain behind concrete walls
+            const filter = audioContext.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(800, audioContext.currentTime);
+
+            ambientGainNode = audioContext.createGain();
+            ambientGainNode.gain.setValueAtTime(0.04, audioContext.currentTime);
+
+            whiteNoise.connect(filter);
+            filter.connect(ambientGainNode);
+            ambientGainNode.connect(audioContext.destination);
+            
+            whiteNoise.start();
+            rainNoiseNode = whiteNoise;
+        }
+
+        function stopAmbientAudio() {
+            if (ambientOscillator) {
+                try { ambientOscillator.stop(); } catch(e) {}
+                ambientOscillator = null;
+            }
+            if (rainNoiseNode) {
+                try { rainNoiseNode.stop(); } catch(e) {}
+                rainNoiseNode = null;
+            }
+        }
+    </script>
+
+    <!-- CORE USER EXPERIENCE & INTERACTION JS ENGINE -->
+    <script>
+        // Custom Cursor Tracker logic
+        const cursor = document.getElementById('custom-cursor');
+        const cursorRing = document.getElementById('custom-cursor-ring');
+
+        document.addEventListener('mousemove', (e) => {
+            if (cursor && cursorRing) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                // Slight delay/lag effect on the outer ring for an organic high-end feel
+                cursorRing.style.transform = `translate(-50%, -50%) translate(${e.clientX}px, ${e.clientY}px)`;
+            }
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Menu Toggle Action
+        function toggleMenu() {
+            const menu = document.getElementById('full-menu');
+            if (menu.classList.contains('translate-y-full')) {
+                menu.classList.remove('translate-y-full');
+                menu.classList.add('translate-y-0');
+            } else {
+                menu.classList.remove('translate-y-0');
+                menu.classList.add('translate-y-full');
+            }
+        }
+
+        // Cart Drawer Action
+        function toggleCart() {
+            const cart = document.getElementById('cart-drawer');
+            if (cart.classList.contains('translate-x-full')) {
+                cart.classList.remove('translate-x-full');
+                cart.classList.add('translate-x-0');
+            } else {
+                cart.classList.remove('translate-x-0');
+                cart.classList.add('translate-x-full');
+            }
+        }
+
+        // Header Border and BG opacity toggle on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-ivory/95', 'backdrop-blur-md', 'border-charcoal/5');
+            } else {
+                header.classList.remove('bg-ivory/95', 'backdrop-blur-md', 'border-charcoal/5');
+            }
+        });
+
+        // Reveal animations on Scroll (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Product Filtering System
+        function filterProducts(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const btns = document.querySelectorAll('.category-btn');
+
+            // Reset buttons active state style
+            btns.forEach(btn => {
+                btn.classList.remove('border-charcoal', 'font-semibold', 'text-charcoal');
+                btn.classList.add('border-transparent', 'text-stone');
+            });
+
+            // Find current active button & set it active
+            event.currentTarget.classList.add('border-charcoal', 'font-semibold', 'text-charcoal');
+            event.currentTarget.classList.remove('border-transparent', 'text-stone');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Global Shopping Cart State Array
+        let cart = [];
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const counter = document.getElementById('cart-counter');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const emptyState = document.getElementById('cart-empty-state');
+
+            // Update item counter
+            if (cart.length > 0) {
+                counter.innerText = cart.length;
+                counter.classList.remove('opacity-0');
+                if (emptyState) emptyState.style.display = 'none';
+            } else {
+                counter.classList.add('opacity-0');
+                if (emptyState) emptyState.style.display = 'flex';
+            }
+
+            // Remove previous items from view (keeping empty state check intact)
+            const dynamicItems = container.querySelectorAll('.cart-item-row');
+            dynamicItems.forEach(item => item.remove());
+
+            let subtotal = 0;
+
+            // Inject items dynamically
+            cart.forEach((item, index) => {
+                subtotal += item.price;
+                const row = document.createElement('div');
+                row.className = "cart-item-row flex justify-between items-center border-b border-charcoal/5 pb-4";
+                row.innerHTML = `
+                    <div class="space-y-1">
+                        <span class="font-serif text-lg block text-charcoal">${item.name}</span>
+                        <span class="text-[10px] text-stone uppercase tracking-widest">Qty: 1</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xs font-light text-charcoal">€${item.price}</span>
+                        <button onclick="removeFromCart(${index})" class="text-stone hover:text-charcoal transition-colors">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+
+            subtotalEl.innerText = `€${subtotal}`;
+            lucide.createIcons(); // reload icons for dynamic row contents
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+            
+            // Pop open the cart drawer to show insertion feedback smoothly
+            toggleCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function triggerCheckout() {
+            if (cart.length === 0) {
+                alertNotification("Your bag is currently empty. Please select an object first.");
+                return;
+            }
+            alertNotification("Initiating our premium secured atmospheric packaging checkout...");
+        }
+
+        // Custom atmospheric alerts instead of system alerts
+        function alertNotification(text) {
+            const alertBox = document.createElement('div');
+            alertBox.className = "fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-charcoal text-ivory text-xs uppercase tracking-superwide px-8 py-4 shadow-2xl border border-stone/30 z-[300] transition-opacity duration-500 opacity-0";
+            alertBox.innerText = text;
+            document.body.appendChild(alertBox);
+            
+            // Fade in
+            setTimeout(() => alertBox.classList.add('opacity-100'), 50);
+            
+            // Fade out and destroy
+            setTimeout(() => {
+                alertBox.classList.remove('opacity-100');
+                setTimeout(() => alertBox.remove(), 500);
+            }, 3000);
+        }
+
+        // Interactive Ritual Selections
+        let selectedRitual = {
+            time: 'Dawn (06:00)',
+            scent: 'Sandalwood & Slate',
+            sound: 'Muted Rainfall',
+            focus: 'Concrete Vessel',
+            timeID: '01',
+            scentID: '01',
+            soundID: '01',
+            focusID: '01'
+        };
+
+        function selectRitualOption(type, value, id) {
+            // Update selections
+            selectedRitual[type] = value;
+            selectedRitual[`${type}ID`] = id;
+
+            // Reset specific class filters
+            document.querySelectorAll(`.ritual-btn-${type}`).forEach(btn => {
+                btn.classList.remove('bg-ivory', 'text-charcoal', 'border-ivory');
+                btn.classList.add('bg-stone/5', 'text-ivory', 'border-stone/30');
+            });
+
+            // Activate chosen button
+            const activeBtn = document.getElementById(`btn-${type}-${id}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-stone/5', 'text-ivory', 'border-stone/30');
+                activeBtn.classList.add('bg-ivory', 'text-charcoal', 'border-ivory');
+            }
+
+            // Update Audio feedback seamlessly based on sound changes
+            if (type === 'sound') {
+                if (id === '01') {
+                    playRainSound();
+                } else if (id === '02') {
+                    playHumDrone();
+                } else {
+                    stopAmbientAudio();
+                }
+            }
+
+            // Update Visual Print Card Display elements
+            document.getElementById(`card-${type}-val`).innerText = value;
+            
+            // Recalculate code tag
+            const ritualNum = `${selectedRitual.timeID}-${selectedRitual.scentID}-${selectedRitual.soundID}-${selectedRitual.focusID}`;
+            document.getElementById('card-ritual-num').innerText = ritualNum;
+
+            // Spin abstract art graphic on card to indicate transformation change
+            const artInner = document.getElementById('card-art-inner');
+            const artContainer = document.getElementById('card-art-container');
+            
+            // Micro transformation visual modifications
+            artContainer.style.transform = `rotate(${Math.random() * 360}deg)`;
+            artInner.className = `w-8 h-8 rounded-full bg-charcoal/10 transition-all duration-700`;
+            if (id === '01') artInner.classList.add('scale-50');
+            if (id === '02') artInner.classList.add('rounded-none');
+            if (id === '03') artInner.classList.add('scale-125');
+        }
+
+        // Initialize default UI highlight choices for ritual builder
+        selectRitualOption('time', 'Dawn (06:00)', '01');
+        selectRitualOption('scent', 'Sandalwood & Slate', '01');
+        selectRitualOption('sound', 'Muted Rainfall', '01');
+        selectRitualOption('focus', 'Concrete Vessel', '01');
+
+        function shareRitual() {
+            // Copy mock state URL using prompt / clipboard fallback secure code
+            const mockUrl = `${window.location.origin}/?ritual=${selectedRitual.timeID}-${selectedRitual.scentID}-${selectedRitual.soundID}-${selectedRitual.focusID}`;
+            
+            const tempInput = document.createElement("input");
+            tempInput.value = mockUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            alertNotification("Ritual preset URL copied to clipboard.");
+        }
+
+        function saveRitualCard() {
+            alertNotification("Connecting to secure luxury plotter... Blueprint Print Process Initialized.");
+        }
+
+        // Product Details Modal state values
+        let activeModalProduct = null;
+        const productsInfo = {
+            solitude: {
+                name: "N°01 SOLITUDE Eau De Parfum",
+                price: 145,
+                tag: "Scent Formulation",
+                desc: "An ultra-premium pure parfum extraction crafted with rare natural materials. Raw basalt oil contrasts against concrete dust, dried high-mountain lichen, and wild sustainable Indian Sandalwood heartwood. Concentrated heavily to sit closely to the skin.",
+                svg: `
+                    <svg class="w-48 h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="35" y="25" width="30" height="55" rx="2" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.5" />
+                        <rect x="42" y="10" width="16" height="15" fill="#1A1A1A" />
+                        <rect x="40" y="45" width="20" height="25" fill="#F4F3EF" stroke="#1A1A1A" stroke-width="0.5" />
+                    </svg>
+                `
+            },
+            vessel: {
+                name: "Subtractive Incense Vessel",
+                price: 95,
+                tag: "Architectural Object",
+                desc: "Hand-poured concrete tray. The concrete is left completely unsealed on the exterior to showcase the beautiful raw air pocket structures, mimicking monolithic design structures. Features a solid, unpolished brass center cylinder.",
+                svg: `
+                    <svg class="w-48 h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="50" cy="80" rx="35" ry="8" fill="rgba(0,0,0,0.1)" />
+                        <path d="M15 50 C 15 20, 85 20, 85 50 C 85 75, 15 75, 15 50" fill="#E2DFD8" stroke="#1A1A1A" stroke-width="1.5" />
+                        <ellipse cx="50" cy="50" rx="30" ry="12" fill="#1A1A1A" />
+                    </svg>
+                `
+            },
+            apparel: {
+                name: "Lounge Kimono Shacket",
+                price: 190,
+                tag: "Sartorial Apparel",
+                desc: "Designed to drop organically from the shoulders. Constructed out of premium 420GSM pure Belgian Flax linen fibers. No chemicals, dyes, or synthetic elements. Features custom hidden seams and architectural sleeve cuts.",
+                svg: `
+                    <svg class="w-48 h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 25 L 30 20 L 50 30 L 70 20 L 85 25 L 80 55 L 75 55 L 75 90 L 25 90 L 25 55 L 20 55 Z" fill="#FBFBFA" stroke="#1A1A1A" stroke-width="1.5" />
+                    </svg>
+                `
+            },
+            sanctuary: {
+                name: "N°02 SANCTUARY Atmosphere Mist",
+                price: 80,
+                tag: "Atmospheric Scent",
+                desc: "A pure botanical room and space formula created using dynamic cold steam distillation. Designed to quickly alter ambient tension. Highly therapeutic elements of hand-plucked wild sage and dried lavender root oil.",
+                svg: `
+                    <svg class="w-48 h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="38" y="20" width="24" height="65" rx="12" fill="#E2DFD8" stroke="#1A1A1A" stroke-width="1.5" />
+                        <rect x="46" y="8" width="8" height="12" fill="#1A1A1A" />
+                    </svg>
+                `
+            },
+            snuffer: {
+                name: "Architectural Brass Candle Snuffer",
+                price: 65,
+                tag: "Spatial Object",
+                desc: "An organic sculptural tool created to end the burning candle ritual with respect. Formed with heavy high-density unrefined brass from historical foundry systems in Sheffield. Zero synthetic protective lacquer ensures a unique historical patina development.",
+                svg: `
+                    <svg class="w-48 h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="20" y1="60" x2="65" y2="40" stroke="#1A1A1A" stroke-width="3" />
+                        <path d="M60 30 L 80 40 L 65 55 Z" fill="#EAD08B" stroke="#1A1A1A" stroke-width="1.5" />
+                    </svg>
+                `
+            },
+            trouser: {
+                name: "Raw Linen Drawstring Trouser",
+                price: 160,
+                tag: "Sartorial Apparel",
+                desc: "High-waist wide-leg drawstring loungewear pants. Hand-combed pure linen ensures unique fabric character, textured feel, and robust structural durability. Perfect balance of weighted form and breathable circulation.",
+                svg: `
+                    <svg class="w-48 h-48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 15 H 70 V 85 L 53 85 L 53 45 L 47 45 L 47 85 L 30 85 Z" fill="#F4F3EF" stroke="#1A1A1A" stroke-width="1.5" />
+                    </svg>
+                `
+            }
+        };
+
+        function openProductDetail(productKey) {
+            const data = productsInfo[productKey];
+            if (!data) return;
+
+            activeModalProduct = data;
+
+            document.getElementById('modal-product-tag').innerText = data.tag;
+            document.getElementById('modal-product-name').innerText = data.name;
+            document.getElementById('modal-product-price').innerText = `€${data.price}`;
+            document.getElementById('modal-product-desc').innerText = data.desc;
+            document.getElementById('modal-product-img').innerHTML = data.svg;
+
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeProductDetail() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            activeModalProduct = null;
+        }
+
+        function addModalProductToCart() {
+            if (activeModalProduct) {
+                addToCart(activeModalProduct.name, activeModalProduct.price);
+                closeProductDetail();
+            }
+        }
+
+        // Close dropdown and modal elements when clicking outside them
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('product-modal');
+            if (e.target === modal) {
+                closeProductDetail();
+            }
+        });
+
+        // Autoplay silent state initial trigger on click window (browser requirements for AudioContext support)
+        window.addEventListener('click', () => {
+            // Unlocks audio contexts on mobile/tablet safely on first interaction
+            if (audioContext && audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>

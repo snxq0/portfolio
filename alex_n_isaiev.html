@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex N. Isaiev — Author, Thinker & Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for literary and workspace icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        parchment: {
+                            50: '#FAF8F5',
+                            100: '#F5F2EB',
+                            200: '#EAE5D9',
+                            300: '#DCD4C4',
+                            800: '#2A2824',
+                            900: '#1C1A17',
+                        },
+                        ink: {
+                            50: '#F3F4F6',
+                            800: '#1E293B',
+                            900: '#0F172A',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom smooth paper grain overlay */
+        .paper-grain {
+            background-color: #F5F2EB;
+            background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0), radial-gradient(rgba(0,0,0,0.02) 1px, transparent 0);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+        }
+        
+        .dark-ink-mode {
+            background-color: #121315 !important;
+            color: #E2E8F0 !important;
+            background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 0);
+        }
+
+        /* Subtle typewriter scrolling */
+        .cursor-blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Custom scrollbar matching vintage book borders */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.02);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(139, 115, 85, 0.3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(139, 115, 85, 0.6);
+        }
+    </style>
+</head>
+<body class="paper-grain text-parchment-900 font-sans min-h-screen selection:bg-parchment-300 transition-colors duration-500 ease-in-out">
+
+    <header class="border-b border-parchment-200/60 sticky top-0 z-40 backdrop-blur-md bg-opacity-90 transition-colors duration-500" id="mainHeader">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Monogram -->
+            <a href="#home" class="group flex items-center space-x-3">
+                <div class="border border-parchment-900/40 w-10 h-10 flex items-center justify-center rounded-sm font-serif text-lg tracking-widest group-hover:bg-parchment-900 group-hover:text-parchment-50 transition-all duration-300">
+                    A.I
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl tracking-wide font-semibold">Alex N. Isaiev</span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] opacity-60">Author & Creative Thinker</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 font-serif text-base">
+                <a href="#library" class="hover:text-amber-800 transition-all py-1 border-b border-transparent hover:border-amber-800/40">The Library</a>
+                <a href="#essays" class="hover:text-amber-800 transition-all py-1 border-b border-transparent hover:border-amber-800/40">Essays</a>
+                <a href="#projects" class="hover:text-amber-800 transition-all py-1 border-b border-transparent hover:border-amber-800/40">Projects</a>
+                <a href="#monomind" class="hover:text-amber-800 transition-all py-1 border-b border-transparent hover:border-amber-800/40 flex items-center space-x-1">
+                    <i class="fa-solid fa-keyboard text-xs opacity-70"></i>
+                    <span>Monomind Desk</span>
+                </a>
+                <a href="#desk" class="hover:text-amber-800 transition-all py-1 border-b border-transparent hover:border-amber-800/40">The Writing Desk</a>
+            </nav>
+
+            <!-- Interactive Settings (Theme Toggle & Font Settings) -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleTheme()" class="p-2 border border-parchment-900/10 rounded-full hover:bg-parchment-200/40 transition-all" title="Toggle Theme (Parchment / Dark Ink)">
+                    <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-parchment-900 hover:text-amber-800" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobileMenu" class="fixed inset-0 bg-parchment-100 z-30 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-center px-12 md:hidden">
+        <nav class="flex flex-col space-y-8 font-serif text-3xl">
+            <a href="#library" onclick="toggleMobileMenu()" class="hover:text-amber-800">The Library</a>
+            <a href="#essays" onclick="toggleMobileMenu()" class="hover:text-amber-800">Essays & Articles</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="hover:text-amber-800">Personal Projects</a>
+            <a href="#monomind" onclick="toggleMobileMenu()" class="hover:text-amber-800">Monomind Desk</a>
+            <a href="#desk" onclick="toggleMobileMenu()" class="hover:text-amber-800">Contact & Guestbook</a>
+        </nav>
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 p-4 text-2xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-24">
+
+        <!-- HERO SECTION: The Atrium -->
+        <section id="home" class="min-h-[70vh] flex flex-col justify-center items-start space-y-8 py-12 relative">
+            <div class="max-w-3xl space-y-6">
+                <p class="text-xs uppercase tracking-[0.3em] font-medium opacity-60">Architect of Words & Metaphor</p>
+                <h1 class="font-serif text-5xl md:text-7xl leading-[1.1] font-light tracking-tight">
+                    Crafting digital sanctuaries for the <span class="italic font-normal">slow, introspective mind</span>.
+                </h1>
+                <p class="text-lg md:text-xl font-serif text-parchment-800/80 leading-relaxed max-w-2xl font-light">
+                    I am Alex N. Isaiev. I write philosophy books, construct interactive design narratives, and think deeply about cognitive tranquility, typography, and how humans cultivate quietude in a world of high-velocity digital clutter.
+                </p>
+            </div>
+
+            <!-- Interative Notebook snippet / Desk Drawer -->
+            <div class="w-full max-w-4xl border border-parchment-200/80 rounded-md p-6 bg-parchment-50/50 shadow-sm transition-all duration-300 hover:shadow-md relative overflow-hidden" id="notebookWidget">
+                <div class="absolute top-0 left-0 w-1 h-full bg-amber-800/40"></div>
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 text-amber-900/80">
+                        <i class="fa-solid fa-feather-pointed"></i>
+                        <span>At the Workspace Drawer • Today's Scribble</span>
+                    </span>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="cycleScribbles(-1)" class="p-1 text-xs hover:text-amber-800 transition-colors"><i class="fa-solid fa-chevron-left"></i></button>
+                        <span id="scribbleCounter" class="text-xs opacity-60 font-mono">1/3</span>
+                        <button onclick="cycleScribbles(1)" class="p-1 text-xs hover:text-amber-800 transition-colors"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <!-- Dynamic text changing -->
+                <p id="scribbleContent" class="font-serif text-lg leading-relaxed italic text-parchment-800/90">
+                    "True intellectual luxury in the 21st century is not information access—it is the capacity for sustained, uninterrupted contemplation."
+                </p>
+                <div class="mt-4 flex items-center justify-between border-t border-parchment-200/40 pt-3">
+                    <span id="scribbleDate" class="text-xs opacity-50 font-mono">June 2026 • Florence, Italy</span>
+                    <button onclick="copyScribble()" class="text-xs hover:text-amber-800 transition-colors flex items-center space-x-1" title="Copy to clipboard">
+                        <i class="fa-regular fa-copy"></i> <span>Copy Scribble</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-4 left-0 flex items-center space-x-2 opacity-60 hover:opacity-100 transition-opacity">
+                <span class="text-xs tracking-widest uppercase">Begin exploring</span>
+                <i class="fa-solid fa-arrow-down animate-bounce text-xs"></i>
+            </div>
+        </section>
+
+        <section id="library" class="space-y-12 scroll-mt-24">
+            <div class="border-b border-parchment-200 pb-4 flex flex-col md:flex-row md:justify-between md:items-end">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-amber-800">Bound Editions</span>
+                    <h2 class="font-serif text-3xl md:text-4xl mt-1">The Library</h2>
+                </div>
+                <p class="text-sm italic opacity-60 max-w-sm mt-2 md:mt-0">Philosophical exploration preserved in ink and paper.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Book Card 1 -->
+                <div class="group flex flex-col md:flex-row gap-6 border border-parchment-200/60 p-6 rounded-md bg-parchment-50/30 hover:bg-parchment-100/40 transition-all duration-300">
+                    <div class="w-full md:w-40 h-56 flex-shrink-0 bg-stone-800 text-stone-100 p-4 rounded-sm flex flex-col justify-between shadow-lg transform group-hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden" style="background: linear-gradient(135deg, #1C1A17 0%, #302C26 100%);">
+                        <div class="border border-amber-900/40 h-full w-full p-2 flex flex-col justify-between">
+                            <p class="text-[9px] uppercase tracking-[0.2em] opacity-60 text-center text-amber-200/80">Philosophical Treatise</p>
+                            <div class="text-center my-auto">
+                                <h3 class="font-serif text-lg leading-tight text-amber-100">The Architecture of Silence</h3>
+                                <div class="w-6 h-px bg-amber-400/40 mx-auto my-2"></div>
+                                <p class="font-serif text-[10px] italic opacity-75 text-amber-200/75">Alex N. Isaiev</p>
+                            </div>
+                            <p class="text-[8px] tracking-widest text-center opacity-50">2025 EDITION</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[10px] uppercase font-mono tracking-wider text-amber-800">Best-Seller & Critical Acclaim</span>
+                            <h3 class="font-serif text-2xl">The Architecture of Silence</h3>
+                            <p class="text-sm text-parchment-800/80 leading-relaxed font-light">
+                                An exploration of physical and mental sanctuary spaces in an increasingly accelerated digital age. Critiques digital interfaces and offers architectural insights for the human psyche.
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-2">
+                            <button onclick="openBookExcerpt('silence')" class="text-sm border border-parchment-900 px-4 py-2 hover:bg-parchment-900 hover:text-parchment-50 rounded-sm transition-all duration-300">
+                                Read Excerpt
+                            </button>
+                            <a href="#desk" class="text-sm text-amber-800 hover:underline flex items-center space-x-1">
+                                <span>Acquire Edition</span> <i class="fa-solid fa-arrow-right-long text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Card 2 -->
+                <div class="group flex flex-col md:flex-row gap-6 border border-parchment-200/60 p-6 rounded-md bg-parchment-50/30 hover:bg-parchment-100/40 transition-all duration-300">
+                    <div class="w-full md:w-40 h-56 flex-shrink-0 bg-stone-900 text-stone-100 p-4 rounded-sm flex flex-col justify-between shadow-lg transform group-hover:scale-[1.02] transition-transform duration-300 relative overflow-hidden" style="background: linear-gradient(135deg, #17242C 0%, #0D161B 100%);">
+                        <div class="border border-sky-900/40 h-full w-full p-2 flex flex-col justify-between">
+                            <p class="text-[9px] uppercase tracking-[0.2em] opacity-60 text-center text-sky-200/80">Cultural Essays</p>
+                            <div class="text-center my-auto">
+                                <h3 class="font-serif text-lg leading-tight text-sky-100">Shadows on the Screen</h3>
+                                <div class="w-6 h-px bg-sky-400/40 mx-auto my-2"></div>
+                                <p class="font-serif text-[10px] italic opacity-75 text-sky-200/75">Alex N. Isaiev</p>
+                            </div>
+                            <p class="text-[8px] tracking-widest text-center opacity-50">2023 EDITION</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[10px] uppercase font-mono tracking-wider text-sky-850">Collection of Papers</span>
+                            <h3 class="font-serif text-2xl">Shadows on the Screen</h3>
+                            <p class="text-sm text-parchment-800/80 leading-relaxed font-light">
+                                Investigating what we sacrifice in exchanging deep eye contact for pixelated screens. It outlines alternative interaction parameters that support sustained human connection.
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-2">
+                            <button onclick="openBookExcerpt('shadows')" class="text-sm border border-parchment-900 px-4 py-2 hover:bg-parchment-900 hover:text-parchment-50 rounded-sm transition-all duration-300">
+                                Read Excerpt
+                            </button>
+                            <a href="#desk" class="text-sm text-amber-800 hover:underline flex items-center space-x-1">
+                                <span>Acquire Edition</span> <i class="fa-solid fa-arrow-right-long text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="essays" class="space-y-12 scroll-mt-24">
+            <div class="border-b border-parchment-200 pb-4 flex flex-col md:flex-row md:justify-between md:items-end">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-amber-800">The Written Word</span>
+                    <h2 class="font-serif text-3xl md:text-4xl mt-1">Essays & Articles</h2>
+                </div>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <button onclick="filterEssays('all')" class="essay-tab-btn active text-sm font-serif pb-1 border-b-2 border-amber-800 text-amber-800 font-medium">All Writing</button>
+                    <button onclick="filterEssays('philosophy')" class="essay-tab-btn text-sm font-serif pb-1 border-b-2 border-transparent text-parchment-800/60 hover:text-amber-850 transition-colors">Philosophy</button>
+                    <button onclick="filterEssays('design')" class="essay-tab-btn text-sm font-serif pb-1 border-b-2 border-transparent text-parchment-800/60 hover:text-amber-850 transition-colors">Digital Design</button>
+                </div>
+            </div>
+
+            <!-- Essays List -->
+            <div id="essaysGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Essay Card 1 -->
+                <article class="essay-card border border-parchment-200/50 p-6 rounded-md bg-parchment-50/20 hover:bg-parchment-100/30 transition-all duration-300 flex flex-col justify-between space-y-6" data-category="philosophy">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs opacity-60 font-mono">
+                            <span>June 2026</span>
+                            <span>5 min read</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold hover:text-amber-800 transition-colors cursor-pointer" onclick="openEssay(1)">
+                            In Praise of Slow Thinking
+                        </h3>
+                        <p class="text-sm text-parchment-800/70 font-light leading-relaxed line-clamp-3">
+                            In a hyper-optimized digital world, slow intellectual maturation has become revolutionary. We explore why the most profound ideas take years, not hours, to crystalize.
+                        </p>
+                    </div>
+                    <button onclick="openEssay(1)" class="text-sm font-serif text-amber-850 font-semibold self-start hover:underline flex items-center space-x-1">
+                        <span>Read Essay</span> <i class="fa-solid fa-book-open text-xs"></i>
+                    </button>
+                </article>
+
+                <!-- Essay Card 2 -->
+                <article class="essay-card border border-parchment-200/50 p-6 rounded-md bg-parchment-50/20 hover:bg-parchment-100/30 transition-all duration-300 flex flex-col justify-between space-y-6" data-category="design">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs opacity-60 font-mono">
+                            <span>April 2026</span>
+                            <span>8 min read</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold hover:text-amber-800 transition-colors cursor-pointer" onclick="openEssay(2)">
+                            The Typographic Soul
+                        </h3>
+                        <p class="text-sm text-parchment-800/70 font-light leading-relaxed line-clamp-3">
+                            How structural letterforms change the tone of our online conversations. This essay is an artistic dive into line-heights, serif aesthetics, and physical-to-digital writing mediums.
+                        </p>
+                    </div>
+                    <button onclick="openEssay(2)" class="text-sm font-serif text-amber-850 font-semibold self-start hover:underline flex items-center space-x-1">
+                        <span>Read Essay</span> <i class="fa-solid fa-book-open text-xs"></i>
+                    </button>
+                </article>
+
+                <!-- Essay Card 3 -->
+                <article class="essay-card border border-parchment-200/50 p-6 rounded-md bg-parchment-50/20 hover:bg-parchment-100/30 transition-all duration-300 flex flex-col justify-between space-y-6" data-category="philosophy">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between text-xs opacity-60 font-mono">
+                            <span>January 2026</span>
+                            <span>12 min read</span>
+                        </div>
+                        <h3 class="font-serif text-xl font-semibold hover:text-amber-800 transition-colors cursor-pointer" onclick="openEssay(3)">
+                            A Taxonomy of Solitude
+                        </h3>
+                        <p class="text-sm text-parchment-800/70 font-light leading-relaxed line-clamp-3">
+                            Solitude is not a monolithic state of emptiness. In this paper, we break down productive physical isolation from systemic cultural loneliness, using historical examples of monasteries.
+                        </p>
+                    </div>
+                    <button onclick="openEssay(3)" class="text-sm font-serif text-amber-850 font-semibold self-start hover:underline flex items-center space-x-1">
+                        <span>Read Essay</span> <i class="fa-solid fa-book-open text-xs"></i>
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="space-y-12 scroll-mt-24">
+            <div class="border-b border-parchment-200 pb-4 flex flex-col md:flex-row md:justify-between md:items-end">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-amber-800">Experimental Spaces</span>
+                    <h2 class="font-serif text-3xl md:text-4xl mt-1">Creative Initiatives</h2>
+                </div>
+                <p class="text-sm italic opacity-60 max-w-sm mt-2 md:mt-0">Merging design-thinking with tangible outputs.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project Card 1: The Margin -->
+                <div class="group border border-parchment-200/80 rounded-md overflow-hidden bg-parchment-50/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="p-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono px-2.5 py-1 bg-amber-800/10 text-amber-900 rounded-full font-semibold">Active Newsletter</span>
+                            <span class="text-xs opacity-50 font-mono">20k+ Subscribers</span>
+                        </div>
+                        <h3 class="font-serif text-2xl group-hover:text-amber-800 transition-colors">The Margin</h3>
+                        <p class="text-sm text-parchment-800/80 leading-relaxed font-light">
+                            A highly curated, monthly slow-web letter exploring typographic history, visual philosophy, and minimal workspace aesthetics. No algorithmic feeds, just curated ink on digital parchment.
+                        </p>
+                        <div class="pt-2">
+                            <!-- Subscription input integrated -->
+                            <div class="flex space-x-2">
+                                <input type="email" id="newsletterEmail" placeholder="Enter your email" class="bg-parchment-100/60 border border-parchment-300/60 px-3 py-2 text-xs rounded-sm focus:outline-none focus:border-amber-800 w-full font-mono">
+                                <button onclick="subscribeNewsletter()" class="bg-parchment-900 text-parchment-50 px-4 py-2 text-xs font-serif hover:bg-amber-800 transition-colors rounded-sm">Join</button>
+                            </div>
+                            <p id="newsletterMsg" class="text-[10px] mt-2 text-green-700 hidden">Welcome. You are now subscribed to The Margin.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Lexicon of the Unseen -->
+                <div class="group border border-parchment-200/80 rounded-md overflow-hidden bg-parchment-50/10 flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+                    <div class="p-8 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono px-2.5 py-1 bg-amber-800/10 text-amber-900 rounded-full font-semibold">Interactive Archive</span>
+                            <span class="text-xs opacity-50 font-mono">Web Platform</span>
+                        </div>
+                        <h3 class="font-serif text-2xl group-hover:text-amber-800 transition-colors">Lexicon of the Unseen</h3>
+                        <p class="text-sm text-parchment-800/80 leading-relaxed font-light">
+                            An experimental linguistic database creating new words for complex digital emotions and philosophical voids. Read definitions like "Chronoslip"—the disorientation of scrolling through historic memories.
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <button onclick="revealWord('Chronoslip')" class="text-xs px-3 py-1.5 border border-parchment-300 hover:border-amber-800 rounded-sm font-serif transition-colors">"Chronoslip"</button>
+                            <button onclick="revealWord('Kinesia')" class="text-xs px-3 py-1.5 border border-parchment-300 hover:border-amber-800 rounded-sm font-serif transition-colors">"Kinesia"</button>
+                            <button onclick="revealWord('Nostalgia-grid')" class="text-xs px-3 py-1.5 border border-parchment-300 hover:border-amber-800 rounded-sm font-serif transition-colors">"Nostalgia-grid"</button>
+                        </div>
+                        <div id="wordRevealBox" class="p-3 bg-parchment-100/50 rounded-sm text-xs border border-parchment-200/50 hidden">
+                            <strong id="revealedWordName" class="font-serif text-amber-900"></strong>: <span id="revealedWordDef" class="italic"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="monomind" class="space-y-12 scroll-mt-24">
+            <div class="border-b border-parchment-200 pb-4">
+                <span class="text-xs uppercase tracking-widest font-semibold text-amber-800">Your Intellectual Sanctuary</span>
+                <h2 class="font-serif text-3xl md:text-4xl mt-1">Monomind Desk Widget</h2>
+                <p class="text-sm italic opacity-60 mt-1">A quiet interface to structure your thoughts. Features tactile keyboard sound synthesis (fully synthesized in-browser, click key sounds toggle below).</p>
+            </div>
+
+            <div class="border border-parchment-300/80 rounded-md p-6 bg-parchment-50 relative shadow-inner">
+                <div class="flex flex-col md:flex-row justify-between items-center pb-4 mb-4 border-b border-parchment-200/60">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-3.5 h-3.5 rounded-full bg-red-400"></span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-yellow-400"></span>
+                        <span class="w-3.5 h-3.5 rounded-full bg-green-400"></span>
+                        <span class="text-xs font-mono opacity-60 ml-2">document_draft.txt</span>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-3 md:mt-0">
+                        <button onclick="toggleTypewriterSounds()" id="soundToggleBtn" class="text-xs px-3 py-1.5 border border-amber-800/30 hover:border-amber-800 rounded-sm flex items-center space-x-1.5 transition-colors">
+                            <i class="fa-solid fa-volume-high text-amber-800"></i>
+                            <span id="soundStatusText">Typewriter Sound: ON</span>
+                        </button>
+                        <button onclick="clearTypewriterText()" class="text-xs px-3 py-1.5 border border-red-850/30 text-red-800 hover:bg-red-50 hover:border-red-600 rounded-sm transition-colors">Clear</button>
+                        <button onclick="exportDraftText()" class="text-xs px-3 py-1.5 bg-parchment-900 text-parchment-50 hover:bg-amber-800 transition-colors rounded-sm flex items-center space-x-1.5">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Export Draft</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative min-h-[250px] w-full bg-parchment-100/50 p-4 border border-parchment-200/40 rounded-sm font-serif text-lg leading-relaxed focus-within:ring-1 focus-within:ring-amber-800/55">
+                    <textarea id="monomindArea" oninput="handleTypewriterInput(event)" placeholder="Rest your mind. Type here. Hear the click of tactile mechanics. Let thoughts emerge organically..." class="w-full min-h-[220px] bg-transparent resize-y border-none focus:outline-none focus:ring-0 placeholder-parchment-800/35 overflow-y-auto font-serif text-lg text-parchment-900 leading-relaxed"></textarea>
+                    
+                    <!-- Stats overlay -->
+                    <div class="absolute bottom-2 right-4 flex space-x-4 text-xs font-mono opacity-50">
+                        <span>Words: <span id="charCount">0</span></span>
+                    </div>
+                </div>
+
+                <!-- Web Audio Typewriter Instructions -->
+                <p class="text-[11px] opacity-60 text-right mt-2 font-mono">Keystroke sounds are synthesized mathematically on your browser to support a calm state of flow.</p>
+            </div>
+        </section>
+
+        <section id="desk" class="space-y-12 scroll-mt-24">
+            <div class="border-b border-parchment-200 pb-4 flex flex-col md:flex-row md:justify-between md:items-end">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-semibold text-amber-800">Direct Correspondence</span>
+                    <h2 class="font-serif text-3xl md:text-4xl mt-1">The Writing Desk</h2>
+                </div>
+                <p class="text-sm italic opacity-60 max-w-sm mt-2 md:mt-0">Connect directly, leave a note in the public guestbook, or inquire about literary appearances.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- Contact Form / Letter (7 Columns) -->
+                <div class="lg:col-span-7 border border-parchment-300 p-8 rounded-sm bg-parchment-50 relative shadow-sm">
+                    <div class="absolute top-0 right-12 w-16 h-20 bg-amber-500/10 border-l border-b border-dashed border-amber-800/30 flex items-center justify-center p-2 text-center text-[10px] font-mono select-none opacity-80 uppercase leading-tight">
+                        Alex N. I.<br>POSTAGE
+                    </div>
+                    
+                    <h3 class="font-serif text-2xl mb-6">Write a Letter</h3>
+                    
+                    <form id="contactForm" onsubmit="submitContactForm(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label for="senderName" class="text-xs uppercase tracking-widest font-semibold opacity-60">Your Name</label>
+                                <input type="text" id="senderName" required class="w-full bg-transparent border-b border-parchment-300 focus:border-amber-800 focus:outline-none py-2 font-serif text-lg transition-colors">
+                            </div>
+                            <div class="space-y-2">
+                                <label for="senderEmail" class="text-xs uppercase tracking-widest font-semibold opacity-60">Your Email Address</label>
+                                <input type="email" id="senderEmail" required class="w-full bg-transparent border-b border-parchment-300 focus:border-amber-800 focus:outline-none py-2 font-serif text-lg transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="messageSubject" class="text-xs uppercase tracking-widest font-semibold opacity-60">Subject of Inquiry</label>
+                            <select id="messageSubject" class="w-full bg-transparent border-b border-parchment-300 focus:border-amber-800 focus:outline-none py-2 font-serif text-lg transition-colors">
+                                <option class="text-parchment-900 bg-parchment-50" value="general">General Philosophical Musings</option>
+                                <option class="text-parchment-900 bg-parchment-50" value="speaking">Speaking & Lectures</option>
+                                <option class="text-parchment-900 bg-parchment-50" value="publishing">Literary Collaboration / Publishing</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label for="senderMessage" class="text-xs uppercase tracking-widest font-semibold opacity-60">Your Correspondence Message</label>
+                            <textarea id="senderMessage" rows="6" required placeholder="Type your letter here with patience..." class="w-full bg-transparent border-b border-parchment-300 focus:border-amber-800 focus:outline-none py-2 font-serif text-lg leading-relaxed transition-colors resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4">
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="postToGuestbook" class="rounded border-parchment-300 text-amber-800 focus:ring-amber-800 bg-transparent">
+                                <label for="postToGuestbook" class="text-xs opacity-80 cursor-pointer">Post a public version to the Guestbook below</label>
+                            </div>
+                            <button type="submit" class="bg-parchment-900 text-parchment-50 hover:bg-amber-800 px-6 py-3 font-serif rounded-sm tracking-wide transition-all duration-300 shadow-md">
+                                Send Letter
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="formSuccessToast" class="hidden absolute inset-0 bg-parchment-50/95 flex flex-col justify-center items-center text-center p-8 transition-all">
+                        <i class="fa-solid fa-envelope-circle-check text-5xl text-amber-800 mb-4 animate-pulse"></i>
+                        <h4 class="font-serif text-2xl mb-2">Letter Sent Successfully</h4>
+                        <p class="text-sm opacity-70 max-w-md">Your letter has been securely received by Alex's office. He responds to physical and digital mail with considered patience.</p>
+                        <button onclick="resetContactForm()" class="mt-6 text-xs underline uppercase tracking-wider hover:text-amber-800">Send another correspondence</button>
+                    </div>
+                </div>
+
+                <!-- Interactive Public Guestbook (5 Columns) -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="border border-parchment-300 p-6 rounded-sm bg-parchment-100/50">
+                        <h3 class="font-serif text-xl mb-4 flex items-center space-x-2">
+                            <i class="fa-solid fa-signature text-amber-800"></i>
+                            <span>The Studio Guestbook</span>
+                        </h3>
+                        <p class="text-xs opacity-70 mb-4 font-light">
+                            Notes from other readers and travelers passing through the workspace archive.
+                        </p>
+
+                        <!-- Dynamic Notes Stack -->
+                        <div id="guestbookFeed" class="space-y-4 max-h-[350px] overflow-y-auto pr-2">
+                            <!-- Populated dynamically with JS -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Typographic Book Excerpt Reader Overlay -->
+    <div id="excerptOverlay" class="fixed inset-0 bg-parchment-900/40 backdrop-blur-md z-50 hidden flex justify-center items-center p-4">
+        <div class="bg-parchment-100 max-w-3xl w-full max-h-[90vh] rounded-md overflow-hidden shadow-2xl flex flex-col border border-parchment-300">
+            <!-- Toolbar -->
+            <div class="bg-parchment-50 border-b border-parchment-200/80 px-6 py-4 flex justify-between items-center">
+                <div class="flex flex-col">
+                    <span id="excerptBookType" class="text-[10px] uppercase font-mono tracking-widest text-amber-850">Book Preview</span>
+                    <h4 id="excerptBookTitle" class="font-serif text-lg font-bold">The Architecture of Silence</h4>
+                </div>
+                <button onclick="closeBookExcerpt()" class="p-2 text-parchment-900 hover:text-amber-800 transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Excerpt Content -->
+            <div class="p-8 md:p-12 overflow-y-auto font-serif text-lg leading-relaxed text-parchment-900 space-y-6" id="excerptTextBody">
+                <!-- Excerpt paragraphs populated dynamically -->
+            </div>
+            <!-- Excerpt Footer -->
+            <div class="bg-parchment-50 border-t border-parchment-200 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <span class="opacity-60">Would you like to continue reading this edition?</span>
+                <div class="flex space-x-3">
+                    <button onclick="closeBookExcerpt()" class="text-parchment-800 hover:underline">Return to Library</button>
+                    <a href="#desk" onclick="closeBookExcerpt()" class="bg-parchment-900 text-parchment-50 px-4 py-2 hover:bg-amber-800 rounded-sm font-semibold transition-colors">Acquire Full Text</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Distraction-free Essay Reader Overlay -->
+    <div id="essayOverlay" class="fixed inset-0 bg-parchment-100 z-50 hidden flex flex-col">
+        <!-- Reader bar -->
+        <header class="border-b border-parchment-200 px-6 py-4 flex justify-between items-center bg-parchment-50">
+            <div class="flex items-center space-x-4">
+                <button onclick="closeEssay()" class="text-parchment-900 hover:text-amber-800 flex items-center space-x-1 font-serif">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Return to Study</span>
+                </button>
+                <div class="h-4 w-px bg-parchment-300"></div>
+                <span class="text-xs opacity-50 font-mono hidden md:inline" id="essayReadTimer">Reading time: --</span>
+            </div>
+
+            <!-- Customization Widget for reading layout -->
+            <div class="flex items-center space-x-4 text-sm font-serif">
+                <button onclick="adjustFontSize(-1)" class="p-1.5 border border-parchment-300 rounded-sm hover:bg-parchment-200 transition-all" title="Decrease Font Size">A-</button>
+                <button onclick="adjustFontSize(1)" class="p-1.5 border border-parchment-300 rounded-sm hover:bg-parchment-200 transition-all" title="Increase Font Size">A+</button>
+                <div class="h-4 w-px bg-parchment-300"></div>
+                <button onclick="toggleReaderBg()" class="p-1.5 border border-parchment-300 rounded-sm hover:bg-parchment-200 transition-all" title="Change Background Tone">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Essay Canvas -->
+        <div id="essayReaderScrollContainer" class="flex-1 overflow-y-auto bg-parchment-50/40 py-12 px-6">
+            <article class="max-w-2xl mx-auto space-y-8" id="essayArticleBody">
+                <!-- Dynamically populated title, subtitle, paragraphs -->
+            </article>
+        </div>
+    </div>
+
+    <footer class="border-t border-parchment-200/80 bg-parchment-100/40 py-16 transition-colors duration-500">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            
+            <div class="space-y-4 md:col-span-2">
+                <div class="font-serif text-2xl font-bold tracking-wide">Alex N. Isaiev</div>
+                <p class="text-sm font-serif italic text-parchment-800/80 max-w-md">
+                    "Silence is the soil of true creativity. In designing places of quiet, both digital and physical, we salvage our human integrity."
+                </p>
+                <p class="text-xs font-mono opacity-50">&copy; 2026 Alex N. Isaiev. Built with a commitment to the slow web.</p>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-xs uppercase tracking-widest font-semibold opacity-60">The Sanctuary Nav</h4>
+                <ul class="space-y-2 text-sm font-serif">
+                    <li><a href="#library" class="hover:text-amber-800 transition-colors">The Bound Library</a></li>
+                    <li><a href="#essays" class="hover:text-amber-800 transition-colors">Introspective Essays</a></li>
+                    <li><a href="#projects" class="hover:text-amber-800 transition-colors">Creative Architecture</a></li>
+                    <li><a href="#monomind" class="hover:text-amber-800 transition-colors">Tactile Typewriter Widget</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase tracking-widest font-semibold opacity-60">Secure Inquiries</h4>
+                <p class="text-xs opacity-70 leading-relaxed font-light">For agency rights, publishing discussions, or lecture panels, send correspondence through the Writing Desk.</p>
+                <div class="flex space-x-4 text-lg">
+                    <a href="https://github.com" target="_blank" class="hover:text-amber-800 transition-colors"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="hover:text-amber-800 transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://medium.com" target="_blank" class="hover:text-amber-800 transition-colors"><i class="fa-solid fa-newspaper"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        /* Database for Books, Excerpts, and Essay Content */
+        const EXCERPT_DATA = {
+            silence: {
+                title: "The Architecture of Silence",
+                category: "Philosophical Treatise",
+                paragraphs: [
+                    "To build inside the twenty-first century is to collaborate with continuous interruption. Every material we select, every software layout we deploy, implicitly demands an tribute of attention from its occupant. Silence has been transformed from a default human environment into an incredibly rare and luxury commodity.",
+                    "We must understand that modern silence is not merely the lack of acoustic displacement. Silence is cognitive space. It is the architectural integrity that allows a mind to travel internally without crashing against external notifications or immediate demands of sensory inputs.",
+                    "If physical buildings can offer thick walls and deep alcoves to block modern metropolitan noise, digital design must cultivate its own structures of silence. We need to construct layout architectures that let the eye settle, fonts that value reading over scanning, and workflows that trust the reader's memory instead of flashing infinite visual triggers."
+                ]
+            },
+            shadows: {
+                title: "Shadows on the Screen",
+                category: "Cultural Essays",
+                paragraphs: [
+                    "We look at the image of the person, but we do not look into their iris. This slight displacement—the millimeters between camera lens and digital window—constitutes the great spiritual gap of our technology era. We have built unprecedented connectivity, yet we live in an ongoing twilight of physical shadows.",
+                    "When conversation is mediated by algorithmic feeds, its chemistry is fundamentally restructured. We begin speaking to the audience behind the friend, instead of speaking safely inside a confidence. We prioritize output intensity over shared presence.",
+                    "To reconstruct interaction paradigms, we do not need to discard screens. Rather, we must treat them as transparent lanterns rather than blinding spotlight targets. Interaction design should strive to leave the human being focused on their physical workspace, using the digital strictly as a supportive companion."
+                ]
+            }
+        };
+
+        const ESSAY_DATA = {
+            1: {
+                title: "In Praise of Slow Thinking",
+                subtitle: "Why deep concepts mature outside algorithmic intervals",
+                category: "Philosophy",
+                date: "June 2026",
+                readingTime: "5 min read",
+                content: [
+                    "We live under the modern dictatorship of the instant reaction. The digital platforms upon which we construct social intellectual dialogues reward quick updates, momentary snapshots, and immediate stances. Yet, if we search back through historical catalogs of human discovery, the most impactful intellectual shifts required immense cultivation periods.",
+                    "Consider the concept of slowness. Slowness is not an intellectual deficiency; it is a tactical buffer. Slow thinking enables ideas to crash against other experiences, to form rich connections across diverse disciplines, and to acquire conceptual complexity that fast reaction loops simply bypass.",
+                    "By prioritizing slow, deliberate processing, we rebuild our neural pathways of focus. We shift from curators of ephemeral noise back into creators of lasting signal. Let us set down the feed, close the immediate notifications, and let our thoughts rest in quiet focus for an extended period of time."
+                ]
+            },
+            2: {
+                title: "The Typographic Soul",
+                subtitle: "How spatial letterforms restructure the human dialogue",
+                category: "Digital Design",
+                date: "April 2026",
+                readingTime: "8 min read",
+                content: [
+                    "The structural curvature of a serif is not merely an aesthetic decoration; it is a mechanical stabilizer for eye movement. When we read a serif typeface, we engage with visual guidelines refined over centuries of typographic craftsmanship. Serifs direct visual energy forward, steadying our cognitive rhythm.",
+                    "Digital media, however, long pushed sans-serif variants due to resolution limits of early hardware. In doing so, interfaces prioritized clinical speed over warm, literary atmosphere. Now, with advanced high-resolution screens, we have a unique opportunity to return elegant serif aesthetics to long-form reading contexts.",
+                    "When we choose beautiful serif typesetting, we make a deliberate statement: this text invites slow contemplation. It asks the reader to dwell on the vocabulary, to notice the balance of positive and negative space, and to respect the weight of written arguments."
+                ]
+            },
+            3: {
+                title: "A Taxonomy of Solitude",
+                subtitle: "Separating generative isolation from isolationism",
+                category: "Philosophy",
+                date: "January 2026",
+                readingTime: "12 min read",
+                content: [
+                    "In modern language, we frequently bundle the words 'solitude' and 'loneliness' together. Yet, they point to entirely different dimensions of the human condition. Loneliness is a state of spiritual dehydration—the feeling that one's presence is isolated from a community. Solitude, conversely, is an active replenishment.",
+                    "Throughout history, thinkers and creatives built physical structures to seek solitude. The monastic cell, the writer's cabin, the deep forest workspace—these were not rooms of exile, but laboratories of deep engagement. Solitude acts as a filter, allowing the intellectual dust of modern life to settle so the clear spring of creative thought can rise.",
+                    "By understanding the taxonomy of solitude, we learn to cultivate it inside small moments of daily life. Solitude does not require complete geographic isolation; it can be achieved in a quiet room, with a notebook, during a solitary morning walk, or in a carefully structured interface design."
+                ]
+            }
+        };
+
+        // Scribbles data for home desk widget
+        const SCRIBBLES = [
+            { text: '"True intellectual luxury in the 21st century is not information access—it is the capacity for sustained, uninterrupted contemplation."', date: "June 2026 • Florence, Italy" },
+            { text: '"We must craft our digital spaces like old wooden desks—surfaces that acquire a beautiful patina of memory, built to handle only one artifact at a time."', date: "May 2026 • Vienna, Austria" },
+            { text: '"The most beautiful systems do not beg for your attention with glowing dots; they sit quietly, ready to serve when you turn your eyes towards them."', date: "April 2026 • Munich, Germany" }
+        ];
+
+        let currentScribbleIndex = 0;
+
+        // Default Guestbook state
+        let guestbookSubmissions = [
+            { name: "Eleanor Vance", date: "June 18, 2026", subject: "general", message: "Your newsletter, 'The Margin,' is a refreshing antidote to social media clutter. A monthly moment of true stillness." },
+            { name: "Dr. Marcus Thorne", date: "May 24, 2026", subject: "speaking", message: "Honored to host you at our Design Academy symposium. Your lecture on cognitive space left a lasting mark on our graduate students." }
+        ];
+
+        /* Initializer */
+        window.onload = function() {
+            loadGuestbook();
+            initAudioTypewriter();
+        }
+
+        /* Scribbles cycling */
+        function cycleScribbles(direction) {
+            currentScribbleIndex += direction;
+            if (currentScribbleIndex < 0) currentScribbleIndex = SCRIBBLES.length - 1;
+            if (currentScribbleIndex >= SCRIBBLES.length) currentScribbleIndex = 0;
+
+            const content = document.getElementById('scribbleContent');
+            const date = document.getElementById('scribbleDate');
+            const counter = document.getElementById('scribbleCounter');
+
+            content.classList.add('opacity-0');
+            date.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                content.innerText = SCRIBBLES[currentScribbleIndex].text;
+                date.innerText = SCRIBBLES[currentScribbleIndex].date;
+                counter.innerText = `${currentScribbleIndex + 1}/${SCRIBBLES.length}`;
+                
+                content.classList.remove('opacity-0');
+                date.classList.remove('opacity-0');
+            }, 200);
+        }
+
+        function copyScribble() {
+            const textToCopy = SCRIBBLES[currentScribbleIndex].text + " — " + SCRIBBLES[currentScribbleIndex].date;
+            
+            // Create fallback input element to perform clipboard copying
+            const el = document.createElement('textarea');
+            el.value = textToCopy;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            showToastNotification("Copied scribble to clipboard");
+        }
+
+        /* Theme Control: Light Parchment / Obsidian Ink Dark Mode */
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            const isDark = body.classList.toggle('dark-ink-mode');
+
+            if (isDark) {
+                themeIcon.className = "fa-solid fa-sun text-sm";
+                body.style.backgroundColor = "#121315";
+                body.style.color = "#E2E8F0";
+                showToastNotification("Theme changed to Obsidian Ink");
+            } else {
+                themeIcon.className = "fa-solid fa-moon text-sm";
+                body.style.backgroundColor = "";
+                body.style.color = "";
+                showToastNotification("Theme changed to Warm Parchment");
+            }
+        }
+
+        /* Mobile Menu Navigation overlay toggle */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('translate-x-full');
+        }
+
+        /* Excerpt Reading Modal */
+        function openBookExcerpt(bookKey) {
+            const data = EXCERPT_DATA[bookKey];
+            if (!data) return;
+
+            document.getElementById('excerptBookTitle').innerText = data.title;
+            document.getElementById('excerptBookType').innerText = data.category;
+            
+            const body = document.getElementById('excerptTextBody');
+            body.innerHTML = '';
+            
+            data.paragraphs.forEach(p => {
+                const para = document.createElement('p');
+                para.className = "leading-relaxed text-parchment-800/95 font-light first-letter:text-3xl first-letter:font-serif first-letter:mr-2 first-letter:float-left mb-6";
+                para.innerText = p;
+                body.appendChild(para);
+            });
+
+            document.getElementById('excerptOverlay').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeBookExcerpt() {
+            document.getElementById('excerptOverlay').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        /* Filter Essays List */
+        function filterEssays(category) {
+            const cards = document.querySelectorAll('.essay-card');
+            const buttons = document.querySelectorAll('.essay-tab-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('border-amber-800', 'text-amber-800', 'font-medium');
+                btn.classList.add('border-transparent', 'text-parchment-800/60');
+            });
+
+            event.target.classList.add('border-amber-800', 'text-amber-800', 'font-medium');
+            event.target.classList.remove('border-transparent', 'text-parchment-800/60');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        /* Deep Custom Distraction-Free Essay Reader Interface */
+        let activeReaderFontSize = 18; // Default font size in pixels
+        
+        function openEssay(essayId) {
+            const data = ESSAY_DATA[essayId];
+            if (!data) return;
+
+            const article = document.getElementById('essayArticleBody');
+            article.innerHTML = `
+                <div class="space-y-4 text-center border-b border-parchment-200/60 pb-8 mb-8">
+                    <span class="text-xs uppercase font-mono tracking-widest text-amber-800">${data.category} • ${data.date}</span>
+                    <h1 class="font-serif text-4xl md:text-5xl leading-tight font-light">${data.title}</h1>
+                    <p class="font-serif italic text-lg opacity-70 max-w-lg mx-auto">${data.subtitle}</p>
+                </div>
+            `;
+
+            data.content.forEach((p, idx) => {
+                const para = document.createElement('p');
+                para.className = `essay-paragraph font-serif leading-relaxed text-parchment-850 mb-6 font-light transition-all`;
+                para.style.fontSize = `${activeReaderFontSize}px`;
+                if (idx === 0) {
+                    para.classList.add('first-letter:text-5xl', 'first-letter:font-serif', 'first-letter:mr-3', 'first-letter:float-left', 'first-letter:text-amber-800');
+                }
+                para.innerText = p;
+                article.appendChild(para);
+            });
+
+            document.getElementById('essayReadTimer').innerText = `Reading time: ${data.readingTime}`;
+            document.getElementById('essayOverlay').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeEssay() {
+            document.getElementById('essayOverlay').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function adjustFontSize(dir) {
+            activeReaderFontSize += dir * 2;
+            if (activeReaderFontSize < 14) activeReaderFontSize = 14;
+            if (activeReaderFontSize > 28) activeReaderFontSize = 28;
+
+            const paragraphs = document.querySelectorAll('.essay-paragraph');
+            paragraphs.forEach(p => {
+                p.style.fontSize = `${activeReaderFontSize}px`;
+            });
+        }
+
+        function toggleReaderBg() {
+            const container = document.getElementById('essayReaderScrollContainer');
+            const currentBg = container.style.backgroundColor;
+            
+            if (currentBg === 'rgb(30, 41, 59)' || currentBg === '#1e293b') {
+                container.style.backgroundColor = '';
+                container.style.color = '';
+            } else {
+                container.style.backgroundColor = '#1e293b';
+                container.style.color = '#f8fafc';
+            }
+        }
+
+        /* Synthesized Web Audio Typewriter Controller (Tactile Sound Logic) */
+        let audioCtx = null;
+        let typewriterSoundsOn = true;
+
+        function initAudioTypewriter() {
+            // Lazy load Audio Context on user click or keypress inside monomind desk
+            const toggleBtn = document.getElementById('soundToggleBtn');
+            if (typewriterSoundsOn) {
+                toggleBtn.classList.add('bg-amber-800/10');
+            }
+        }
+
+        function toggleTypewriterSounds() {
+            typewriterSoundsOn = !typewriterSoundsOn;
+            const statusText = document.getElementById('soundStatusText');
+            const toggleBtn = document.getElementById('soundToggleBtn');
+
+            if (typewriterSoundsOn) {
+                statusText.innerText = "Typewriter Sound: ON";
+                toggleBtn.classList.add('bg-amber-800/10');
+                showToastNotification("Synthesizer audio enabled");
+            } else {
+                statusText.innerText = "Typewriter Sound: OFF";
+                toggleBtn.classList.remove('bg-amber-800/10');
+                showToastNotification("Synthesizer audio muted");
+            }
+        }
+
+        // Web Audio Synthesizer: Mathematically simulates a retro type click or carriage return
+        function playKeystrokeSound(isSpaceOrEnter) {
+            if (!typewriterSoundsOn) return;
+
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                const now = audioCtx.currentTime;
+
+                // Create oscillators & filter
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const bpf = audioCtx.createBiquadFilter();
+
+                osc.connect(bpf);
+                bpf.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                bpf.type = "bandpass";
+                bpf.frequency.setValueAtTime(isSpaceOrEnter ? 400 : 900, now);
+                bpf.Q.setValueAtTime(4.0, now);
+
+                // Keystroke transient
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(isSpaceOrEnter ? 120 : 350, now);
+                osc.frequency.exponentialRampToValueAtTime(isSpaceOrEnter ? 40 : 150, now + 0.05);
+
+                gain.gain.setValueAtTime(isSpaceOrEnter ? 0.08 : 0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + (isSpaceOrEnter ? 0.12 : 0.08));
+
+                osc.start(now);
+                osc.stop(now + 0.15);
+
+                // Add mechanical wooden shell echo
+                if (!isSpaceOrEnter) {
+                    const shellOsc = audioCtx.createOscillator();
+                    const shellGain = audioCtx.createGain();
+                    shellOsc.connect(shellGain);
+                    shellGain.connect(audioCtx.destination);
+                    
+                    shellOsc.type = "triangle";
+                    shellOsc.frequency.setValueAtTime(110, now);
+                    shellGain.gain.setValueAtTime(0.02, now);
+                    shellGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+                    
+                    shellOsc.start(now);
+                    shellOsc.stop(now + 0.2);
+                }
+
+            } catch (err) {
+                console.warn("Web Audio API not supported/enabled: ", err);
+            }
+        }
+
+        function handleTypewriterInput(e) {
+            const val = e.target.value;
+            const words = val.trim() === '' ? 0 : val.trim().split(/\s+/).length;
+            document.getElementById('charCount').innerText = words;
+
+            // Detect last typed character to trigger appropriate audio sound
+            const lastChar = val[val.length - 1];
+            const isSpecialKey = lastChar === ' ' || lastChar === '\n' || lastChar === '.' || lastChar === ',';
+            
+            playKeystrokeSound(isSpecialKey);
+        }
+
+        function clearTypewriterText() {
+            document.getElementById('monomindArea').value = '';
+            document.getElementById('charCount').innerText = '0';
+            showToastNotification("Workspace draft cleared");
+        }
+
+        function exportDraftText() {
+            const draftText = document.getElementById('monomindArea').value;
+            if (!draftText.trim()) {
+                showToastNotification("Draft workspace is currently empty");
+                return;
+            }
+
+            const header = "ALEX N. ISAIEV - SANCTUARY WRITING DRAWER DRAFT\n==============================================\n\n";
+            const fullContent = header + draftText;
+
+            // Standard fallback download creation for inline sandbox frameworks
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(fullContent));
+            element.setAttribute('download', 'monomind_draft.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            showToastNotification("Draft exported as .txt file");
+        }
+
+        /* Lexicon of the Unseen word definitions mapping */
+        const LEXICON_WORDS = {
+            "Chronoslip": "The cognitive friction or sudden emotional vertigo felt when scrolling through perfectly preserved historic timeline events in high-velocity feeds.",
+            "Kinesia": "The restorative peace of sitting entirely stationary while observing beautiful digital typography scroll downward at a relaxed tempo.",
+            "Nostalgia-grid": "The psychological architecture created when one groups physical polaroids, vintage inks, and handwritten pages on a modern modular layout grid."
+        };
+
+        function revealWord(word) {
+            const box = document.getElementById('wordRevealBox');
+            const name = document.getElementById('revealedWordName');
+            const def = document.getElementById('revealedWordDef');
+
+            name.innerText = word;
+            def.innerText = LEXICON_WORDS[word];
+            box.classList.remove('hidden');
+        }
+
+        /* Correspondence & Studio Guestbook Systems */
+        function loadGuestbook() {
+            const localData = localStorage.getItem('isaiev_guestbook');
+            if (localData) {
+                guestbookSubmissions = JSON.parse(localData);
+            }
+            renderGuestbook();
+        }
+
+        function renderGuestbook() {
+            const container = document.getElementById('guestbookFeed');
+            container.innerHTML = '';
+
+            guestbookSubmissions.forEach(sub => {
+                const item = document.createElement('div');
+                item.className = "border-b border-parchment-200 pb-4 mb-4 text-xs space-y-2";
+                item.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <span class="font-serif font-bold text-sm text-amber-900">${sub.name}</span>
+                        <span class="font-mono text-[10px] opacity-50">${sub.date}</span>
+                    </div>
+                    <p class="text-parchment-800 leading-relaxed font-light italic">${sub.message}</p>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const subject = document.getElementById('messageSubject').value;
+            const message = document.getElementById('senderMessage').value;
+            const makePublic = document.getElementById('postToGuestbook').checked;
+
+            if (makePublic) {
+                const today = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const dateStr = today.toLocaleDateString('en-US', options);
+
+                const newSubmission = {
+                    name: name,
+                    date: dateStr,
+                    subject: subject,
+                    message: message
+                };
+
+                guestbookSubmissions.unshift(newSubmission);
+                localStorage.setItem('isaiev_guestbook', JSON.stringify(guestbookSubmissions));
+                renderGuestbook();
+            }
+
+            // Display success window
+            document.getElementById('formSuccessToast').classList.remove('hidden');
+        }
+
+        function resetContactForm() {
+            document.getElementById('contactForm').reset();
+            document.getElementById('formSuccessToast').classList.add('hidden');
+        }
+
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail');
+            if (!email.value || !email.value.includes('@')) {
+                showToastNotification("Please enter a valid email address");
+                return;
+            }
+
+            document.getElementById('newsletterMsg').classList.remove('hidden');
+            email.value = '';
+            
+            setTimeout(() => {
+                document.getElementById('newsletterMsg').classList.add('hidden');
+            }, 5000);
+        }
+
+        /* Generic custom modal alert toaster system to prevent native alerts */
+        function showToastNotification(message) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-6 right-6 bg-parchment-900 text-parchment-50 border border-parchment-800 text-xs py-3 px-5 rounded-sm shadow-xl flex items-center space-x-2 z-50 transition-opacity duration-300 font-serif";
+            toast.innerHTML = `<i class="fa-solid fa-feather text-amber-400"></i> <span>${message}</span>`;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

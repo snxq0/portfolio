@@ -1,0 +1,50 @@
+  :root {
+            --bg-color: #0a0a0a;
+            --accent-color: #3b82f6;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Анимация курсора */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1em;
+            background-color: var(--accent-color);
+            margin-left: 4px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+       
+        /* Glow effect */
+        .glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        .terminal-window {
+            background: #121212;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
